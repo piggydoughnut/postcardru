@@ -13,6 +13,7 @@ module.exports = {
         mainText: "#4c648e",
         blueGradient:
           "linear-gradient(90deg, rgba(9,54,121,1) 0%, rgba(2,0,36,1) 100%)",
+        paleBlue: "#B7D1E1",
       },
       backgroundImage: {
         "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
@@ -21,6 +22,9 @@ module.exports = {
       },
       backgroundPosition: {
         "top-4": "center top 2rem",
+      },
+      blur: {
+        xs: "0.5px",
       },
     },
   },

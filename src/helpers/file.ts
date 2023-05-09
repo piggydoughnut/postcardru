@@ -21,11 +21,19 @@ type PostcardFile = {
 };
 
 export const readFolder = async (dir: string, total = 0, page = 0) => {
-  const files = (await fs.readdir(dir)).filter((f) => f !== ".DS_Store");
+  const files = (await fs.readdir(dir)).filter(
+    (f) => f !== ".DS_Store" && f !== "thumbs"
+  );
   if (total && files.length > total) {
-    return files.slice(page, total);
+    return {
+      result: files.slice(page, total),
+      total: files.length,
+    };
   }
-  return files;
+  return {
+    result: files,
+    total: files.length,
+  };
 };
 
 export const postcardsPath = (categoryId: string) =>
@@ -34,15 +42,15 @@ export const postcardsPath = (categoryId: string) =>
 export const readFiles = async (
   dir: string,
   categoryId: string
-): Promise<PostcardFile[] | null> => {
+): Promise<{ files: PostcardFile[]; total: number } | null> => {
   const folderPath = postcardsPath(categoryId);
   try {
     if (categoriesWithSubcategories.includes(categoryId)) {
-      let folders = await readFolder(dir);
+      let { result: folders, total } = await readFolder(dir);
       const fileNames = await Promise.all(
         folders.map(async (folder) => {
           const dir = path.resolve(folderPath, folder);
-          let files = await readFolder(dir);
+          let { result: files, total } = await readFolder(dir);
           return {
             localPath: path.resolve(folderPath, folder, "thumbs", files[0]),
             path: `/postcards/${categoryId.toLowerCase()}/${folder}/thumbs/${
@@ -50,18 +58,26 @@ export const readFiles = async (
             }`,
             fileName: files[0],
             categoryName: subcategoryNames[categoryId][folder].eng,
+            total,
           };
         })
       );
-      return fileNames;
+      return {
+        files: fileNames,
+        total,
+      };
     }
 
-    let filenames = await readFolder(dir, 6, 1);
-    return filenames.map((f) => ({
+    let { result: filenames, total } = await readFolder(dir, 6, 1);
+    const res = filenames.map((f) => ({
       localPath: path.resolve(folderPath, "thumbs", f),
       path: `/postcards/${categoryId.toLowerCase()}/thumbs/${f}`,
       fileName: f,
     }));
+    return {
+      files: res,
+      total,
+    };
   } catch (e) {
     console.log(e);
     return null;
