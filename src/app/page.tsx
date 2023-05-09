@@ -1,7 +1,7 @@
-import { H1, H2 } from "./components/Text";
+import { H1, H2 } from "../components/Text";
 
 import Image from "next/image";
-import categories from "../../categories.json";
+import categories from "../../data/categories.json";
 
 export default function Home() {
   return (
@@ -22,34 +22,42 @@ export default function Home() {
             </div>
           </div>
           <div className="flex items-center justify-center gap-4 mt-14">
-            <Image
-              src="stamps/stamp-flowers.svg"
-              height={150}
-              width={120}
-              alt="flowers"
-              className="-rotate-3 mt-6"
-            ></Image>
-            <Image
-              src="stamps/stamp-animals.svg"
-              height={150}
-              width={120}
-              alt="animals"
-              className="rotate-3"
-            ></Image>
-            <Image
-              src="stamps/stamp-girl.svg"
-              height={150}
-              width={120}
-              alt="girls"
-              className="-rotate-3 mt-6"
-            ></Image>
-            <Image
-              src="stamps/stamp-nature.svg"
-              height={150}
-              width={120}
-              alt="nature"
-              className="rotate-2"
-            ></Image>
+            <a href="/categories/flowers">
+              <Image
+                src="stamps/stamp-flowers.svg"
+                height={150}
+                width={120}
+                alt="flowers"
+                className="-rotate-3 mt-6"
+              ></Image>
+            </a>
+            <a href="/categories/animals">
+              <Image
+                src="stamps/stamp-animals.svg"
+                height={150}
+                width={120}
+                alt="animals"
+                className="rotate-3"
+              ></Image>
+            </a>
+            <a href="/categories/girls">
+              <Image
+                src="stamps/stamp-girl.svg"
+                height={150}
+                width={120}
+                alt="girls"
+                className="-rotate-3 mt-6"
+              ></Image>
+            </a>
+            <a href="/categories/nature">
+              <Image
+                src="stamps/stamp-nature.svg"
+                height={150}
+                width={120}
+                alt="nature"
+                className="rotate-2"
+              ></Image>
+            </a>
           </div>
         </div>
       </main>
@@ -64,7 +72,7 @@ export default function Home() {
                     <div key={item.name} className="m-0">
                       {idx > 0 && <span className="text-mainText "> | </span>}
                       <a
-                        href="#"
+                        href={`/categories/${item.folderName.toLowerCase()}`}
                         className="text-mainText hover:underline hover:opacity-80"
                       >
                         {item.name}
