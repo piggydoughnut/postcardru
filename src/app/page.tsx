@@ -3,6 +3,13 @@ import { H1, H2 } from "../components/Text";
 import Image from "next/image";
 import categories from "../../data/categories.json";
 
+const categoryNames: Record<string, any> = categories;
+
+type CategoryItem = {
+  folderName: string;
+  name: string;
+};
+
 export default function Home() {
   return (
     <div className="bg-white ">
@@ -68,17 +75,19 @@ export default function Home() {
               <div key={category} className="p-4">
                 <h2 className="capitalize text-lg text-header">{category}</h2>
                 <div className="flex flex-wrap mb-2">
-                  {categories[category].map((item, idx) => (
-                    <div key={item.name} className="m-0">
-                      {idx > 0 && <span className="text-mainText "> | </span>}
-                      <a
-                        href={`/categories/${item.folderName.toLowerCase()}`}
-                        className="text-mainText hover:underline hover:opacity-80"
-                      >
-                        {item.name}
-                      </a>
-                    </div>
-                  ))}
+                  {categoryNames[category].map(
+                    (item: CategoryItem, idx: number) => (
+                      <div key={item.name} className="m-0">
+                        {idx > 0 && <span className="text-mainText "> | </span>}
+                        <a
+                          href={`/categories/${item.folderName.toLowerCase()}`}
+                          className="text-mainText hover:underline hover:opacity-80"
+                        >
+                          {item.name}
+                        </a>
+                      </div>
+                    )
+                  )}
                 </div>
               </div>
             );
