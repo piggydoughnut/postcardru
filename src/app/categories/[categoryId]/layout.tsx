@@ -1,6 +1,7 @@
 import "../../../../styles/globals.css";
 
 import { Inter } from "next/font/google";
+import TopNavigation from "@/components/TopNavigation";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -16,7 +17,19 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={inter.className}>{children}</body>
+      <body className={inter.className}>
+        <div className="flex flex-col justify-center items-center max-w-[720px] mx-auto">
+          <div className="w-full pt-2 px-7">
+            <TopNavigation title="Choose a postcard" />
+          </div>
+          <div
+            className="flex flex-col justify-center items-center min-h-[570px] bg-white bg-no-repeat bg-top-4 "
+            style={{ backgroundImage: "url(/bg.svg)" }}
+          >
+            {children}
+          </div>
+        </div>
+      </body>
     </html>
   );
 }

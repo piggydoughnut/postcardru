@@ -1,4 +1,4 @@
-import { niconne } from "../../styles/fonts";
+import { alveria, niconne } from "../../styles/fonts";
 
 export const H1 = ({
   className,
@@ -28,4 +28,20 @@ export const H2 = ({
   >
     {children}
   </h2>
+);
+
+export const H3 = ({
+  className,
+  type,
+  children,
+}: {
+  className?: string;
+  type?: string;
+  children: React.ReactNode | string;
+}) => (
+  <p
+    className={`${alveria.className} text-sm uppercase tracking-widest text-mainBlue ${className}`}
+  >
+    {children}
+  </p>
 );

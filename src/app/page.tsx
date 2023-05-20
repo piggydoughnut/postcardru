@@ -18,7 +18,7 @@ export default function Home() {
         style={{ backgroundImage: "url(bg.svg)" }}
       >
         <div>
-          <H1 className="text-center">Greeting Postcards</H1>
+          <H1 className="text-center ">Greeting Postcards</H1>
           <div className="mt-28 flex flex-col max-w-[600px] mx-auto">
             <div className="">
               <H2 className="ml-20">get my postcard</H2>
@@ -28,7 +28,7 @@ export default function Home() {
               </div>
             </div>
           </div>
-          <div className="flex items-center justify-center gap-4 mt-14">
+          <div className="flex items-center justify-center gap-4 mt-20">
             <a href="/categories/flowers">
               <Image
                 src="stamps/stamp-flowers.svg"
