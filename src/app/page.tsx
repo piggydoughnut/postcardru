@@ -73,15 +73,15 @@ export default function Home() {
           {Object.keys(categories).map((category) => {
             return (
               <div key={category} className="p-4">
-                <h2 className="capitalize text-lg text-header">{category}</h2>
+                <h2 className="capitalize text-lg text-mainBlue">{category}</h2>
                 <div className="flex flex-wrap mb-2">
                   {categoryNames[category].map(
                     (item: CategoryItem, idx: number) => (
                       <div key={item.name} className="m-0">
-                        {idx > 0 && <span className="text-mainText "> | </span>}
+                        {idx > 0 && <span className="text-mainBlue "> | </span>}
                         <a
                           href={`/categories/${item.folderName.toLowerCase()}`}
-                          className="text-mainText hover:underline hover:opacity-80"
+                          className="text-mainBlue hover:underline hover:opacity-80"
                         >
                           {item.name}
                         </a>

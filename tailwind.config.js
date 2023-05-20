@@ -6,11 +6,14 @@ module.exports = {
     "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
   ],
   theme: {
+    fontSize: {
+      sm: "14px",
+      md: "18px",
+    },
     extend: {
       colors: {
-        mainHeaders: "#1C3F6C",
-        header: "#7493c0",
-        mainText: "#4c648e",
+        heavyBlue: "#1C3F6C",
+        mainBlue: "#6F93C2",
         blueGradient:
           "linear-gradient(90deg, rgba(9,54,121,1) 0%, rgba(2,0,36,1) 100%)",
         paleBlue: "#B7D1E1",

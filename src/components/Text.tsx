@@ -8,7 +8,7 @@ export const H1 = ({
   children: React.ReactNode | string;
 }) => (
   <h1
-    className={`${niconne.className} text-[38px] tracking-widest text-mainHeaders
+    className={`${niconne.className} text-[38px] tracking-widest text-heavyBlue
   mt-24 ${className}
   `}
   >
@@ -24,7 +24,7 @@ export const H2 = ({
   children: React.ReactNode | string;
 }) => (
   <h2
-    className={`${niconne.className} text-[24px] tracking-widest text-mainHeaders ${className}`}
+    className={`${niconne.className} text-[24px] tracking-widest text-heavyBlue ${className}`}
   >
     {children}
   </h2>

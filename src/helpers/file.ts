@@ -13,10 +13,11 @@ const categoriesWithSubcategories = [
 
 const subcategoryNames: Record<string, any> = subcategories;
 
-type PostcardFile = {
+export type PostcardFile = {
   localPath: string;
   path: string;
   fileName: string;
+  subCategoryName?: string;
   categoryName?: string;
 };
 
@@ -58,6 +59,7 @@ export const readFiles = async (
             }`,
             fileName: files[0],
             categoryName: subcategoryNames[categoryId][folder].eng,
+            subCategoryName: folder,
             total,
           };
         })

@@ -9,7 +9,7 @@ export default function Pagination({
 }) {
   const pages = total / PER_PAGE;
   if (pages < 2) {
-    return;
+    return <></>;
   }
   const pagination = [];
   for (let i = 0; i < pages; i++) {

@@ -1,0 +1,14 @@
+<svg width="740" height="242" viewBox="0 0 740 242" fill="none" xmlns="http://www.w3.org/2000/svg">
+<line y1="8" x2="54" y2="8" stroke="#D1D8DF" stroke-width="2"/>
+<line x1="4" y1="76" x2="4" y2="17" stroke="#D1D8DF" stroke-width="2"/>
+<line x1="9" y1="59" x2="9" stroke="#D1D8DF" stroke-width="2"/>
+<rect x="22" y="33" width="10" height="164" fill="#E0F0E5" fill-opacity="0.6"/>
+<rect x="22" y="197" width="10" height="45" fill="#E5E8EB" fill-opacity="0.5"/>
+<rect x="20" y="12" width="14" height="14" fill="#D1D8DF" fill-opacity="0.7"/>
+<line y1="-1" x2="54" y2="-1" transform="matrix(-1 0 0 1 740 9)" stroke="#D1D8DF" stroke-width="2"/>
+<line y1="-1" x2="59" y2="-1" transform="matrix(0 -1 -1 0 735 76)" stroke="#D1D8DF" stroke-width="2"/>
+<line y1="-1" x2="59" y2="-1" transform="matrix(0 -1 -1 0 730 59)" stroke="#D1D8DF" stroke-width="2"/>
+<rect width="10" height="164" transform="matrix(-1 0 0 1 718 33)" fill="#E0F0E5" fill-opacity="0.6"/>
+<rect width="10" height="45" transform="matrix(-1 0 0 1 718 197)" fill="#E5E8EB" fill-opacity="0.5"/>
+<rect width="14" height="14" transform="matrix(-1 0 0 1 720 12)" fill="#D1D8DF" fill-opacity="0.7"/>
+</svg>
