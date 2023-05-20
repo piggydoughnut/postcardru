@@ -4,6 +4,7 @@ const HSeparator = () => (
 );
 
 import Image from "next/image";
+import { Wrapper } from "./Wrapper";
 import titles from "@/helpers/titles";
 import { useState } from "react";
 
@@ -28,10 +29,7 @@ export default function PostcardForm({
 
   return (
     <div>
-      <div
-        className="flex flex-col border border-1 border-heavyBlue mx-auto py-2 px-4 items-center bg-white bg-no-repeat bg-contain"
-        style={{ backgroundImage: "url(/decoration.svg)" }}
-      >
+      <Wrapper>
         <Image src={imagePath} height={300} width={400} alt={imagePath} />
         <HSeparator />
         <div className="flex gap-2">
@@ -138,7 +136,7 @@ export default function PostcardForm({
             </div>
           </div>
         </div>
-      </div>
+      </Wrapper>
       <div className="flex justify-between w-full mt-4">
         <input
           type="button"

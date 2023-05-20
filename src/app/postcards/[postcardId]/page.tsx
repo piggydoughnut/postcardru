@@ -2,8 +2,10 @@
 
 import { useEffect, useState } from "react";
 
+import { H2 } from "@/components/Text";
 import PostcardPreview from "@/components/PostcardPreview";
 import TopNavigation from "@/components/TopNavigation";
+import { Wrapper } from "@/components/Wrapper";
 import path from "path";
 
 type Person = {
@@ -30,7 +32,18 @@ export default function Page({ params }: { params: { postcardId: string } }) {
           </a>
         </div>
       ) : (
-        <p>Searching for your card</p>
+        <Wrapper className="flex pt-20 text-center">
+          <div className="flex flex-row gap-2 items-baseline">
+            <H2>Searching for your card</H2>
+            <div className="animate-pulse">
+              <div className="flex items-center justify-center space-x-1">
+                <span className="dot dot1 h-1 w-1 bg-heavyBlue rounded-full"></span>
+                <span className="dot dot2 h-1 w-1 bg-heavyBlue rounded-full"></span>
+                <span className="dot dot3 h-1 w-1 bg-heavyBlue rounded-full"></span>
+              </div>
+            </div>
+          </div>
+        </Wrapper>
       )}
     </div>
   );

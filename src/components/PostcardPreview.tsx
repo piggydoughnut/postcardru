@@ -6,6 +6,7 @@ const HSeparator = ({ className }: { className?: string }) => (
 );
 
 import Image from "next/image";
+import { Wrapper } from "./Wrapper";
 type Person = {
   email: string;
   name: string;
@@ -29,10 +30,7 @@ export default function PostcardPreview({
 }) {
   return (
     <div>
-      <div
-        className="flex flex-col border border-1 border-heavyBlue mx-auto py-2 px-4 items-center bg-white bg-no-repeat bg-contain w-[600px]"
-        style={{ backgroundImage: "url(/decoration.svg)" }}
-      >
+      <Wrapper>
         <Image
           src={cardParams.imagePath}
           height={300}
@@ -78,7 +76,7 @@ export default function PostcardPreview({
             </div>
           </div>
         </div>
-      </div>
+      </Wrapper>
       {onSend && (
         <div className="flex justify-between w-full mt-4">
           <input

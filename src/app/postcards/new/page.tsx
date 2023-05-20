@@ -1,8 +1,11 @@
 "use client";
 
+import { H1, H2 } from "@/components/Text";
+
 import PostcardForm from "@/components/PostcardForm";
 import PostcardPreview from "@/components/PostcardPreview";
 import TopNavigation from "@/components/TopNavigation";
+import { Wrapper } from "@/components/Wrapper";
 import path from "path";
 import { useState } from "react";
 
@@ -13,6 +16,13 @@ const PostcardStates = {
   sent: "sent",
   error: "error",
 } as const;
+
+const Titles: Record<string, string> = {
+  [PostcardStates.new]: "Compose the card",
+  [PostcardStates.preview]: "Preview the card",
+  [PostcardStates.sending]: "Sending",
+  [PostcardStates.sent]: "Your card has been sent",
+};
 
 type Person = {
   email: string;
@@ -31,7 +41,7 @@ export default function Page({
   };
 }) {
   const [postCardState, setPostCardState] = useState<string>(
-    PostcardStates.new
+    PostcardStates.sent
   );
   const [title, setTitle] = useState("");
   const [text, setText] = useState(
@@ -43,7 +53,7 @@ export default function Page({
   });
   const [sender, setSender] = useState({ name: "Max", email: "mail@mail.com" });
 
-  const [postcardId, setPostcardId] = useState(null);
+  const [postcardId, setPostcardId] = useState("575532499");
   const [error, setError] = useState<string | null>(null);
 
   const imagePath = path.resolve(
@@ -54,7 +64,7 @@ export default function Page({
   );
   return (
     <div className="flex flex-col justify-center items-center mt-4 max-w-[600px] mx-auto">
-      <TopNavigation />
+      <TopNavigation title={Titles[postCardState]} />
       {postCardState === PostcardStates.new && (
         <PostcardForm
           imagePath={imagePath}
@@ -112,19 +122,23 @@ export default function Page({
         />
       )}
       {postCardState === PostcardStates.sending && (
-        <div>
-          <h2> We are sending your card please be patient...</h2>
-        </div>
+        <Wrapper className="flex pt-20 text-center">
+          <H2>We are sending your card please be patient...</H2>
+        </Wrapper>
       )}
-      {postCardState === PostcardStates.sent && (
-        <div>
-          <h2> Your postcard was successfully sent</h2>
-          <p>
-            {" "}
-            You can access it here:{" "}
-            {`http://localhost:3000/postcards/${postcardId}`}
-          </p>
-        </div>
+      {postcardId && postCardState === PostcardStates.sent && (
+        <Wrapper className="flex pt-20 text-center">
+          <div className="text-mainBlue">
+            <H1>Postcard sent</H1>
+            <p>
+              You can preview your sent postcard here: <br />
+              <a
+                className="underline hover:text-blue-600"
+                href={`http://localhost:3000/postcards/${postcardId}`}
+              >{`http://localhost:3000/postcards/${postcardId}`}</a>
+            </p>
+          </div>
+        </Wrapper>
       )}
       {postCardState === PostcardStates.error && (
         <div>
