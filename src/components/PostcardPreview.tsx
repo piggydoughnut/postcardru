@@ -25,7 +25,7 @@ export default function PostcardPreview({
     recipient: Person;
   };
   mode?: string;
-  onBack: () => void;
+  onBack?: () => void;
   onSend?: () => void;
 }) {
   return (

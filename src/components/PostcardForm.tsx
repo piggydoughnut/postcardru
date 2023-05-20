@@ -17,15 +17,13 @@ export default function PostcardForm({
   onBack: () => void;
   onNext: (params: any) => void;
 }) {
-  const [title, setTitle] = useState("Hi!");
-  const [text, setText] = useState(
-    "Yeah, but John, if The Pirates of the Caribbean breaks down, the pirates don’t eat the tourists. Jaguar shark! So tell me - does it really exist? This thing comes fully loaded. AM/FM radio, reclining bucket seats, and... power windows. They're using our own satellites against us. And the clock is ticking."
-  );
+  const [title, setTitle] = useState("");
+  const [text, setText] = useState("");
   const [recipient, setRecipient] = useState({
-    name: "Mary",
-    email: "mail@mail.com",
+    name: "",
+    email: "",
   });
-  const [sender, setSender] = useState({ name: "Max", email: "mail@mail.com" });
+  const [sender, setSender] = useState({ name: "", email: "" });
 
   return (
     <div>

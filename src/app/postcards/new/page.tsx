@@ -41,19 +41,17 @@ export default function Page({
   };
 }) {
   const [postCardState, setPostCardState] = useState<string>(
-    PostcardStates.sent
+    PostcardStates.new
   );
   const [title, setTitle] = useState("");
-  const [text, setText] = useState(
-    "Yeah, but John, if The Pirates of the Caribbean breaks down, the pirates don’t eat the tourists. Jaguar shark! So tell me - does it really exist? This thing comes fully loaded. AM/FM radio, reclining bucket seats, and... power windows. They're using our own satellites against us. And the clock is ticking."
-  );
+  const [text, setText] = useState("");
   const [recipient, setRecipient] = useState({
-    name: "Mary",
-    email: "mail@mail.com",
+    name: "",
+    email: "",
   });
-  const [sender, setSender] = useState({ name: "Max", email: "mail@mail.com" });
+  const [sender, setSender] = useState({ name: "", email: "" });
 
-  const [postcardId, setPostcardId] = useState("575532499");
+  const [postcardId, setPostcardId] = useState("");
   const [error, setError] = useState<string | null>(null);
 
   const imagePath = path.resolve(

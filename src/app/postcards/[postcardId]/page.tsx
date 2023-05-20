@@ -6,12 +6,7 @@ import { H2 } from "@/components/Text";
 import PostcardPreview from "@/components/PostcardPreview";
 import TopNavigation from "@/components/TopNavigation";
 import { Wrapper } from "@/components/Wrapper";
-import path from "path";
 
-type Person = {
-  email: string;
-  name: string;
-};
 export default function Page({ params }: { params: { postcardId: string } }) {
   const [cardParams, setCardParams] = useState(null);
   const [error, setError] = useState<string | null>(null);
