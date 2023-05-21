@@ -17,14 +17,17 @@ export default async function Page({
   params,
   searchParams,
 }: {
-  params: { categoryId: string; sub: string };
+  params: { categoryId: string; subcategoryId: string };
   searchParams: { page: number };
 }) {
-  const dir = path.resolve(postcardsPath(params.categoryId));
+  const dir = path.resolve(
+    postcardsPath(params.categoryId, params.subcategoryId)
+  );
   const result = await readFiles(
     dir,
     params.categoryId,
-    searchParams?.page ?? 1
+    searchParams?.page ?? 1,
+    params.subcategoryId
   );
   return (
     <div>
@@ -39,7 +42,7 @@ export default async function Page({
             if (f.subCategoryName) {
               imagePath = `/categories/${params.categoryId}/${f.subCategoryName}`;
             } else {
-              imagePath = `/postcards/new?categoryId=${params.categoryId}&fileName=${f.fileName}`;
+              imagePath = `/postcards/new?categoryId=${params.categoryId}&subCategoryId=${params.subcategoryId}&fileName=${f.fileName}`;
             }
 
             return (

@@ -1,7 +1,7 @@
 import * as fs from "node:fs/promises";
 
 import path from "path";
-import subcategories from "../../data/subcategories.json";
+import subcategories from "@/helpers/subcategories.json";
 
 const categoriesWithSubcategories = [
   "animals",
@@ -38,17 +38,18 @@ export const readFolder = async (dir: string, total = 0, page = 0) => {
   };
 };
 
-export const postcardsPath = (categoryId: string) =>
-  path.join("./public/postcards", categoryId).toLowerCase();
+export const postcardsPath = (categoryId: string, sub?: string) =>
+  path.join("./public/postcards", categoryId, sub ? sub : "").toLowerCase();
 
 export const readFiles = async (
   dir: string,
   categoryId: string,
-  page: number
+  page: number,
+  sub?: string
 ): Promise<{ files: PostcardFile[]; total: number } | null> => {
-  const folderPath = postcardsPath(categoryId);
+  const folderPath = postcardsPath(categoryId, sub);
   try {
-    if (categoriesWithSubcategories.includes(categoryId)) {
+    if (!sub && categoriesWithSubcategories.includes(categoryId)) {
       let { result: folders, total } = await readFolder(dir);
       const fileNames = await Promise.all(
         folders.map(async (folder) => {
@@ -75,7 +76,13 @@ export const readFiles = async (
     let { result: filenames, total } = await readFolder(dir, 6, page);
     const res = filenames.map((f) => ({
       localPath: path.resolve(folderPath, "thumbs", f),
-      path: `/postcards/${categoryId.toLowerCase()}/thumbs/${f}`,
+      path: path.join(
+        "/postcards",
+        categoryId.toLowerCase(),
+        sub ? sub : "",
+        "thumbs",
+        f
+      ),
       fileName: f,
     }));
     return {

@@ -1,0 +1,105 @@
+ {
+    "animals": {
+        "animals_birds": {
+            "eng": "Birds",
+            "rus": ""
+        },
+        "animals_dog": {
+            "eng": "Dogs",
+            "rus": ""
+        },
+        "animals_fish": {
+            "eng": "Fish",
+            "rus": ""
+        },
+        "animals_other": {
+            "eng": "Other",
+            "rus": ""
+        },
+        "animals_pics": {
+            "eng": "Drawings",
+            "rus": ""
+        }
+    },
+    "nature": {
+        "nature_forest": {
+             "eng":"Forest"
+        },
+        "nature_mountains": {
+            "eng": "Mountains"
+        },
+        "nature_other": {
+            "eng": "Other"
+        },
+        "nature_pics": {
+            "eng": "Drawings"
+        },
+        "nature_sea": {
+            "eng": "Sea"
+        },
+        "nature_sky": {
+            "eng": "Sky"
+        }
+
+    },
+    "girls": {
+        "girls_blonde": {
+            "eng": "Blondes"
+        },
+        "girls_brunette": {
+            "eng": "Brunettes"
+        },
+        "girls_other": {
+            "eng": "Other"
+        },
+        "girls_pics": {
+            "eng": "Drawings"
+        },
+        "girls_red": {
+            "eng": "Redheads"
+        },
+        "girls_sexy": {
+            "eng": "Sexy"
+        }
+    },
+    "flowers": {
+        "flowers_blue": {
+            "eng": "Blue"
+        },
+        "flowers_many": {
+            "eng": "Many"
+        },
+        "flowers_other": {
+            "eng": "Other"
+        },
+        "flowers_red": {
+            "eng": "Red"
+        },
+        "flowers_rose": {
+            "eng": "Rose"
+        },
+        "flowers_white": {
+            "eng": "White"
+        }
+    },
+    "gallery": {
+        "gallery_anry": {
+            "eng": "Anry"
+        },
+        "gallery_boba_g": {
+            "eng": "Boba G"
+        },
+        "gallery_borco_petrovich": {
+            "eng": "Borco Petrovich"
+        },
+        "gallery_ja": {
+            "eng": "Ja"
+        },
+        "gallery_quattrocento": {
+            "eng": "Quattrocento"
+        },
+        "gallery_rebrov": {
+            "eng": "Rebrov"
+        }
+    }
+ }
