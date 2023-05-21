@@ -11,7 +11,7 @@ export default function Page({ params }: { params: { postcardId: string } }) {
   const [cardParams, setCardParams] = useState(null);
   const [error, setError] = useState<string | null>(null);
   useEffect(() => {
-    fetch(`http://localhost:3000/api/postcards/${params.postcardId}`)
+    fetch(`${window.location.hostname}/api/postcards/${params.postcardId}`)
       .then((res) => res.json())
       .then((body) => setCardParams(body));
   }, [params]);

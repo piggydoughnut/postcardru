@@ -22,11 +22,11 @@ body {
 }
 
 .stamp-border {
-  border-image: url('http://localhost:3000/border.svg') 20 round;
+  border-image: url('/border.svg') 20 round;
   border-width: 15px;
 }
 
 .small-stamp-border {
-  border-image: url('http://localhost:3000/border-small.svg') 20 round;
+  border-image: url('/border-small.svg') 20 round;
   border-width: 15px;
 }

@@ -22,7 +22,7 @@ export default function Pagination({
   }
 
   const handleChoosingPage = (pageNum: number) => {
-    window.location.href = `http://localhost:3000${window.location.pathname}?page=${pageNum}`;
+    window.location.href = `${window.location.hostname}/${window.location.pathname}?page=${pageNum}`;
   };
 
   return (

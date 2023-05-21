@@ -92,7 +92,7 @@ export default function Page({
           onSend={async () => {
             setPostCardState(PostcardStates.sending);
             const response = await fetch(
-              `http://localhost:3000/api/postcards`,
+              `${window.location.pathname}/api/postcards`,
               {
                 method: "POST",
                 headers: {
@@ -132,8 +132,8 @@ export default function Page({
               You can preview your sent postcard here: <br />
               <a
                 className="underline hover:text-blue-600"
-                href={`http://localhost:3000/postcards/${postcardId}`}
-              >{`http://localhost:3000/postcards/${postcardId}`}</a>
+                href={`${window.location.pathname}/postcards/${postcardId}`}
+              >{`${window.location.pathname}/postcards/${postcardId}`}</a>
             </p>
           </div>
         </Wrapper>
