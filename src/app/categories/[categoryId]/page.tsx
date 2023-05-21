@@ -34,7 +34,9 @@ export default async function Page({
         style={{ backgroundImage: "url(/bg.svg)" }}
       >
         <H1 className="text-center mb-20 ">Choose a Postcard</H1>
-        <ImageMesh images={result?.files} category={params.categoryId} />
+        {!!result && (
+          <ImageMesh images={result?.files} category={params.categoryId} />
+        )}
       </div>
       {result && (
         <Pagination
