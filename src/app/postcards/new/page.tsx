@@ -37,7 +37,7 @@ export default function Page({
     path: string;
     fileName: string;
     categoryId: string;
-    subCategoryId: string;
+    subcategoryId: string;
   };
 }) {
   const [postCardState, setPostCardState] = useState<string>(
@@ -57,7 +57,7 @@ export default function Page({
   const imagePath = path.resolve(
     "/postcards",
     searchParams.categoryId,
-    !!searchParams.subCategoryId ? searchParams.subCategoryId : "",
+    !!searchParams.subcategoryId ? searchParams.subcategoryId : "",
     searchParams.fileName
   );
   return (

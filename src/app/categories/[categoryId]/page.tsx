@@ -2,6 +2,7 @@ import { H1, H3 } from "@/components/Text";
 import { postcardsPath, readFiles } from "@/helpers/file";
 
 import Image from "next/image";
+import ImageMesh from "@/components/ImageMesh";
 import Pagination from "@/components/Pagination";
 import path from "path";
 
@@ -33,37 +34,7 @@ export default async function Page({
         style={{ backgroundImage: "url(/bg.svg)" }}
       >
         <H1 className="text-center mb-20 ">Choose a Postcard</H1>
-        <div className="flex gap-2 flex-wrap justify-center">
-          {result?.files?.map((f) => {
-            let imagePath = "";
-            if (f.subCategoryName) {
-              imagePath = `/categories/${params.categoryId}/${f.subCategoryName}`;
-            } else {
-              imagePath = `/postcards/new?categoryId=${params.categoryId}&fileName=${f.fileName}`;
-            }
-
-            return (
-              <div key={f.fileName} className="w-1/4 flex justify-center">
-                <a
-                  href={imagePath}
-                  className="small-stamp-border w-fit flex flex-col items-center justify-center text-mainBlue bg-white"
-                >
-                  <div className="">
-                    <Image
-                      src={f.path}
-                      alt={f.fileName}
-                      width={100}
-                      height={100}
-                    />
-                    {f?.categoryName && (
-                      <H3 className="text-center">{f.categoryName}</H3>
-                    )}
-                  </div>
-                </a>
-              </div>
-            );
-          })}
-        </div>
+        <ImageMesh images={result?.files} category={params.categoryId} />
       </div>
       {result && (
         <Pagination
