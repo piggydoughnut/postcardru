@@ -38,8 +38,11 @@ export const readFolder = async (dir: string, total = 0, page = 0) => {
   };
 };
 
-export const postcardsPath = (categoryId: string, sub?: string) =>
-  path.join("./public/postcards", categoryId, sub ? sub : "").toLowerCase();
+export const postcardsPath = (categoryId: string, sub?: string) => {
+  return path
+    .join(process.cwd(), "/public/postcards", categoryId, sub ? sub : "")
+    .toLowerCase();
+};
 
 export const readFiles = async (
   dir: string,
