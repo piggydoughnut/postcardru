@@ -39,15 +39,15 @@ export const readFolder = async (dir: string, total = 0, page = 0) => {
 };
 
 export const postcardsPath = (categoryId: string, sub?: string) => {
-  if (process.env.NODE_ENV === "development") {
-    return path
-      .join(process.cwd(), "/public/postcards", categoryId, sub ? sub : "")
-      .toLowerCase();
-  } else {
-    return path
-      .join(process.cwd(), "/postcards", categoryId, sub ? sub : "")
-      .toLowerCase();
-  }
+  return path
+    .resolve(
+      process.cwd(),
+      "public",
+      "postcardimages",
+      categoryId,
+      sub ? sub : ""
+    )
+    .toLowerCase();
 };
 
 export const readFiles = async (
