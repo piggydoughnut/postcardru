@@ -1,18 +1,9 @@
-import { H1, H3 } from "@/components/Text";
 import { postcardsPath, readFiles } from "@/helpers/file";
 
-import Image from "next/image";
+import { H1 } from "@/components/Text";
 import ImageMesh from "@/components/ImageMesh";
 import Pagination from "@/components/Pagination";
 import path from "path";
-
-const categoriesWithSubcategories = [
-  "animals",
-  "nature",
-  "girls",
-  "gallery",
-  "flowers",
-];
 
 export default async function Page({
   params,
@@ -22,11 +13,13 @@ export default async function Page({
   searchParams: { page: number };
 }) {
   const dir = path.resolve(postcardsPath(params.categoryId));
+  console.log("The dir is ", dir);
   const result = await readFiles(
     dir,
     params.categoryId,
     searchParams?.page ?? 1
   );
+  console.log("result ", result);
   return (
     <div>
       <div
