@@ -1,7 +1,7 @@
 import { H1, H2 } from "../components/Text";
 
 import Image from "next/image";
-import categories from "../../data/categories.json";
+import categories from "@/helpers/categories.json";
 
 const categoryNames: Record<string, any> = categories;
 
@@ -14,7 +14,7 @@ export default function Home() {
   return (
     <div className="bg-white ">
       <main
-        className="flex min-h-[540px] flex-col bg-white bg-no-repeat bg-top-4"
+        className="flex min-h-[570px] flex-col bg-white bg-no-repeat bg-top-4"
         style={{ backgroundImage: "url(bg.svg)" }}
       >
         <div>
@@ -28,14 +28,14 @@ export default function Home() {
               </div>
             </div>
           </div>
-          <div className="flex items-center justify-center gap-4 mt-20">
+          <div className="flex items-center justify-center gap-4 mt-8">
             <a href="/categories/flowers">
               <Image
                 src="stamps/stamp-flowers.svg"
                 height={150}
                 width={120}
                 alt="flowers"
-                className="-rotate-3 mt-6"
+                className="-rotate-3 mt-6 bg-white"
               ></Image>
             </a>
             <a href="/categories/animals">
@@ -44,7 +44,7 @@ export default function Home() {
                 height={150}
                 width={120}
                 alt="animals"
-                className="rotate-3"
+                className="rotate-3 bg-white"
               ></Image>
             </a>
             <a href="/categories/girls">
@@ -53,7 +53,7 @@ export default function Home() {
                 height={150}
                 width={120}
                 alt="girls"
-                className="-rotate-3 mt-6"
+                className="-rotate-3 mt-6 bg-white"
               ></Image>
             </a>
             <a href="/categories/nature">
@@ -62,7 +62,7 @@ export default function Home() {
                 height={150}
                 width={120}
                 alt="nature"
-                className="rotate-2"
+                className="rotate-2 bg-white"
               ></Image>
             </a>
           </div>

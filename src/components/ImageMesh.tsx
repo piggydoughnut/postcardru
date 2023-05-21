@@ -1,7 +1,6 @@
 import { H3 } from "@/components/Text";
 import Image from "next/image";
 import { PostcardFile } from "@/helpers/file";
-import path from "path";
 
 export default function ImageMesh({
   images,
@@ -12,6 +11,7 @@ export default function ImageMesh({
   category: string;
   subcategory?: string;
 }) {
+  const subcategoryQuery = subcategory ? `&subcategoryId=${subcategory}` : "";
   return (
     <div className="flex gap-2 flex-wrap justify-center">
       {images?.map((f) => {
@@ -19,9 +19,7 @@ export default function ImageMesh({
         if (f.subCategoryName) {
           imagePath = `/categories/${category}/${f.subCategoryName}`;
         } else {
-          imagePath = `/postcards/new?categoryId=${category}${
-            subcategory ? `&subcategoryId=${subcategory}` : ""
-          }&fileName=${f.fileName}`;
+          imagePath = `/postcards/new?categoryId=${category}${subcategoryQuery}&fileName=${f.fileName}`;
         }
         return (
           <div key={f.fileName} className="w-1/4 flex justify-center">

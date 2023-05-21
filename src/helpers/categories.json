@@ -1,0 +1,341 @@
+{
+  "Birthday": [
+    {
+      "folderName": "birth_common",
+      "name": "Common"
+    },
+    {
+      "folderName": "birth_joke",
+      "name": "Humor"
+    },
+    {
+      "folderName": "birth_friends",
+      "name": "Friends"
+    },
+    {
+      "folderName": "birth_relatives",
+      "name": "Relatives"
+    },
+    {
+      "folderName": "birth_late",
+      "name": "Late"
+    }
+  ],
+  "holidays": [
+    {
+      "folderName": "holiday_newyear",
+      "name": "New Year"
+    },
+    {
+      "folderName": "holiday_christ",
+      "name": "Christmas"
+    },
+    {
+      "folderName": "holiday_25yan",
+      "name": "Tatiana`s day"
+    },
+    {
+      "folderName": "holiday_groundhog_day",
+      "name": "Groundhog day"
+    },
+    {
+      "folderName": "holiday_valentine",
+      "name": "St. Valentine's Day"
+    },
+    {
+      "folderName": "holiday_23feb",
+      "name": "23 of February"
+    },
+    {
+      "folderName": "holiday_8march",
+      "name": "8 of march"
+    },
+    {
+      "folderName": "holiday_patrick",
+      "name": "St. Patric day"
+    },
+    {
+      "folderName": "holiday_27mart",
+      "name": "Theatre`s day"
+    },
+    {
+      "folderName": "holiday_1apr",
+      "name": "1 of April"
+    },
+    {
+      "folderName": "holiday_12apr",
+      "name": "Cosmonaut`s day"
+    },
+    {
+      "folderName": "holiday_easter",
+      "name": "Easter"
+    },
+    {
+      "folderName": "holiday_1may",
+      "name": "1 of May"
+    },
+    {
+      "folderName": "holiday_9may",
+      "name": "9 of May"
+    },
+    {
+      "folderName": "holiday_27may",
+      "name": "Librarian day"
+    },
+    {
+      "folderName": "holiday_graduate",
+      "name": "Graduate day"
+    },
+    {
+      "folderName": "holiday_1sep",
+      "name": "1 of September"
+    },
+    {
+      "folderName": "holiday_7nov",
+      "name": "7 of November"
+    }
+  ],
+  "Party, Meetings": [
+    {
+      "folderName": "party_common",
+      "name": "Common"
+    },
+    {
+      "folderName": "party_party",
+      "name": "Party"
+    }
+  ],
+  "Greetings": [
+    {
+      "folderName": "greet_common",
+      "name": "Common"
+    },
+    {
+      "folderName": "greet_date",
+      "name": "Date"
+    },
+    {
+      "folderName": "greet_wedding",
+      "name": "Wedding"
+    },
+    {
+      "folderName": "greet_kids",
+      "name": "Children"
+    }
+  ],
+  "humor": [
+    {
+      "folderName": "humor_pics",
+      "name": "Common"
+    },
+    {
+      "folderName": "humor_enemy",
+      "name": "Enemy"
+    },
+    {
+      "folderName": "humor_let",
+      "name": "Wishes"
+    },
+    {
+      "folderName": "humor_anim",
+      "name": "Animation"
+    },
+    {
+      "folderName": "humor_hateis",
+      "name": "Hate is.."
+    },
+    {
+      "folderName": "humor_reklama",
+      "name": "Advertising"
+    },
+    {
+      "folderName": "masyanya",
+      "name": "Masyanya"
+    }
+  ],
+  "Feelings": [
+    {
+      "folderName": "feel_thank",
+      "name": "Thanks!"
+    },
+    {
+      "folderName": "feel_sorry",
+      "name": "Sorry"
+    },
+    {
+      "folderName": "feel_miss",
+      "name": "Need you"
+    },
+    {
+      "folderName": "feel_luck",
+      "name": "Luck!"
+    },
+    {
+      "folderName": "feel_sick",
+      "name": "Get well!"
+    }
+  ],
+  "Friendship": [
+    {
+      "folderName": "friends_hi",
+      "name": "Hello"
+    },
+    {
+      "folderName": "friends_how",
+      "name": "How are you?"
+    },
+    {
+      "folderName": "friends_smile",
+      "name": "Smile"
+    }
+  ],
+  "Love/Romance": [
+    {
+      "folderName": "love_love",
+      "name": "With love"
+    },
+    {
+      "folderName": "love_date",
+      "name": "Date"
+    },
+    {
+      "folderName": "love_proposal",
+      "name": "Proposal"
+    },
+    {
+      "folderName": "love_miss",
+      "name": "Miss you"
+    },
+    {
+      "folderName": "love_valentine",
+      "name": "Valentine"
+    },
+    {
+      "folderName": "love_sim",
+      "name": "Simpathy"
+    },
+    {
+      "folderName": "love_kiss",
+      "name": "Kiss"
+    }
+  ],
+  "thematic" : [
+    {
+      "folderName": "flowers",
+      "name": "Flowers ..."
+    },
+    {
+      "folderName": "animals",
+      "name": "Animals ..."
+    },
+    {
+      "folderName": "girls",
+      "name": "Girls ..."
+    },
+    {
+      "folderName": "men",
+      "name": "Guys"
+    },
+    {
+      "folderName": "nature",
+      "name": "Nature ..."
+    },
+    {
+      "folderName": "food",
+      "name": "Food"
+    },
+    {
+      "folderName": "tech_auto",
+      "name": "Auto"
+    },
+    {
+      "folderName": "tech",
+      "name": "Tech"
+    },
+    {
+      "folderName": "city",
+      "name": "Cities"
+    },
+    {
+      "folderName": "people",
+      "name": "People"
+    },
+    {
+      "folderName": "mif",
+      "name": "Mif"
+    },
+    {
+      "folderName": "nostalgy",
+      "name": "Nostalgy"
+    },
+    {
+      "folderName": "films",
+      "name": "Films"
+    },
+    {
+      "folderName": "celebrity",
+      "name": "Celebrity"
+    },
+    {
+      "folderName": "sport",
+      "name": "Sport"
+    },
+    {
+      "folderName": "anime",
+      "name": "Anime"
+    },
+    {
+      "folderName": "mult",
+      "name": "Mult"
+    },
+    {
+      "folderName": "other",
+      "name": "Other"
+    }
+
+  ],
+
+  "art": [
+    {
+      "folderName": "retro",
+      "name": "Retro"
+    },
+    {
+      "folderName": "art_classic",
+      "name": "Classic"
+    },
+    {
+      "folderName": "art_impress",
+      "name": "Impress"
+    },
+    {
+      "folderName": "gallery",
+      "name": "Gallery ..."
+    }
+  ],
+  "everyday": [
+    {
+      "folderName": "everyday_week",
+      "name": "Week"
+    },
+    {
+      "folderName": "everyday_hor",
+      "name": "Horoscopes"
+    },
+    {
+      "folderName": "everyday_business",
+      "name": "Business"
+    },
+    {
+      "folderName": "everyday_just",
+      "name": "Just for you"
+    }
+  ],
+
+  "Faces": [
+    {
+      "folderName": "lica",
+      "name": "Faces"
+    }
+  ]
+}
