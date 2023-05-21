@@ -72,16 +72,20 @@ export default function Home() {
         <div className="flex flex-col max-w-[700px] mx-auto flex-wrap stamp-border">
           {Object.keys(categories).map((category) => {
             return (
-              <div key={category} className="p-4">
-                <h2 className="capitalize text-lg text-mainBlue">{category}</h2>
+              <div key={category} className="px-4 py-1">
+                <h2 className="capitalize text-lg text-mainBlue text-md">
+                  {category}
+                </h2>
                 <div className="flex flex-wrap mb-2">
                   {categoryNames[category].map(
                     (item: CategoryItem, idx: number) => (
                       <div key={item.name} className="m-0">
-                        {idx > 0 && <span className="text-mainBlue "> | </span>}
+                        {idx > 0 && (
+                          <span className="text-heavyBlue "> | </span>
+                        )}
                         <a
                           href={`/categories/${item.folderName.toLowerCase()}`}
-                          className="text-mainBlue hover:underline hover:opacity-80"
+                          className="text-heavyBlue hover:underline hover:opacity-80"
                         >
                           {item.name}
                         </a>

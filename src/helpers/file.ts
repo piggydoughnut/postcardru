@@ -26,8 +26,9 @@ export const readFolder = async (dir: string, total = 0, page = 0) => {
     (f) => f !== ".DS_Store" && f !== "thumbs"
   );
   if (total && files.length > total) {
+    const start = (page - 1) * total;
     return {
-      result: files.slice(page, total),
+      result: files.slice(start, total + start),
       total: files.length,
     };
   }
@@ -42,7 +43,8 @@ export const postcardsPath = (categoryId: string) =>
 
 export const readFiles = async (
   dir: string,
-  categoryId: string
+  categoryId: string,
+  page: number
 ): Promise<{ files: PostcardFile[]; total: number } | null> => {
   const folderPath = postcardsPath(categoryId);
   try {
@@ -70,7 +72,7 @@ export const readFiles = async (
       };
     }
 
-    let { result: filenames, total } = await readFolder(dir, 6, 1);
+    let { result: filenames, total } = await readFolder(dir, 6, page);
     const res = filenames.map((f) => ({
       localPath: path.resolve(folderPath, "thumbs", f),
       path: `/postcards/${categoryId.toLowerCase()}/thumbs/${f}`,
