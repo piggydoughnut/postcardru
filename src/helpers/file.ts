@@ -22,9 +22,13 @@ export type PostcardFile = {
 };
 
 export const readFolder = async (dir: string, total = 0, page = 0) => {
+  const f = await fs.readdir(dir);
+  console.log(f);
   const files = (await fs.readdir(dir)).filter(
     (f) => f !== ".DS_Store" && f !== "thumbs"
   );
+  console.log("total ", total);
+  console.log("files length ", files);
   if (total && files.length > total) {
     const start = (page - 1) * total;
     return {
