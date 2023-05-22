@@ -17,7 +17,7 @@ export default function PostcardForm({
   onBack: () => void;
   onNext: (params: any) => void;
 }) {
-  const [title, setTitle] = useState("");
+  const [title, setTitle] = useState("Hi!");
   const [text, setText] = useState("");
   const [recipient, setRecipient] = useState({
     name: "",

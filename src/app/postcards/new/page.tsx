@@ -43,7 +43,7 @@ export default function Page({
   const [postCardState, setPostCardState] = useState<string>(
     PostcardStates.new
   );
-  const [title, setTitle] = useState("");
+  const [title, setTitle] = useState("Hi!");
   const [text, setText] = useState("");
   const [recipient, setRecipient] = useState({
     name: "",
@@ -91,22 +91,19 @@ export default function Page({
           cardParams={{ imagePath, text, title, sender, recipient }}
           onSend={async () => {
             setPostCardState(PostcardStates.sending);
-            const response = await fetch(
-              `${window.location.pathname}/api/postcards`,
-              {
-                method: "POST",
-                headers: {
-                  "Content-Type": "application/json",
-                },
-                body: JSON.stringify({
-                  imagePath,
-                  title,
-                  text,
-                  recipient,
-                  sender,
-                }),
-              }
-            );
+            const response = await fetch(`/api/postcards`, {
+              method: "POST",
+              headers: {
+                "Content-Type": "application/json",
+              },
+              body: JSON.stringify({
+                imagePath,
+                title,
+                text,
+                recipient,
+                sender,
+              }),
+            });
             if (response.status === 200) {
               const body = await response.json();
               setPostCardState(PostcardStates.sent);
@@ -132,8 +129,8 @@ export default function Page({
               You can preview your sent postcard here: <br />
               <a
                 className="underline hover:text-blue-600"
-                href={`${window.location.pathname}/postcards/${postcardId}`}
-              >{`${window.location.pathname}/postcards/${postcardId}`}</a>
+                href={`${window.location.origin}/postcards/${postcardId}`}
+              >{`${window.location.origin}/postcards/${postcardId}`}</a>
             </p>
           </div>
         </Wrapper>
