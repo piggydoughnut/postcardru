@@ -3,7 +3,6 @@ import { postcardsPath, readFiles } from "@/helpers/file";
 
 import ImageMesh from "@/components/ImageMesh";
 import Pagination from "@/components/Pagination";
-import path from "path";
 
 export default async function Page({
   params,
@@ -12,11 +11,7 @@ export default async function Page({
   params: { categoryId: string; subcategoryId: string };
   searchParams: { page: number };
 }) {
-  const dir = path.resolve(
-    postcardsPath(params.categoryId, params.subcategoryId)
-  );
   const result = await readFiles(
-    dir,
     params.categoryId,
     searchParams?.page ?? 1,
     params.subcategoryId

@@ -11,25 +11,18 @@ export default function ImageMesh({
   category: string;
   subcategory?: string;
 }) {
-  const subcategoryQuery = subcategory ? `&subcategoryId=${subcategory}` : "";
   return (
     <div className="flex gap-2 flex-wrap justify-center">
       {images?.map((f) => {
-        let imagePath = "";
-        if (f.subCategoryName) {
-          imagePath = `/categories/${category}/${f.subCategoryName}`;
-        } else {
-          imagePath = `/postcards/new?categoryId=${category}${subcategoryQuery}&fileName=${f.fileName}`;
-        }
         return (
           <div key={f.fileName} className="w-1/4 flex justify-center">
             <a
-              href={imagePath}
+              href={f.imagePath}
               className="small-stamp-border w-fit flex flex-col items-center justify-center text-mainBlue bg-white"
             >
               <div className="">
                 <Image src={f.path} alt={f.fileName} width={100} height={100} />
-                {f?.categoryName && (
+                {f?.categoryName && !subcategory && (
                   <H3 className="text-center">{f.categoryName}</H3>
                 )}
               </div>

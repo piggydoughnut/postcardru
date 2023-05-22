@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import { addSearchParametersAndRefresh } from "@/helpers/general";
 const PER_PAGE = 6;
 
 export default function Pagination({
@@ -21,9 +22,8 @@ export default function Pagination({
     pagination.push(i + 1);
   }
 
-  const handleChoosingPage = (pageNum: number) => {
-    window.location.href = `${window.location.hostname}/${window.location.pathname}?page=${pageNum}`;
-  };
+  const handleChoosingPage = (pageNum: number) =>
+    addSearchParametersAndRefresh({ page: pageNum });
 
   return (
     <div className={`flex gap-1 ${className}`}>
