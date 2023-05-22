@@ -126,19 +126,20 @@ export const readFiles = async (
         // @ts-ignore
         return getFileObject(subfolder, data.files[0], total);
       });
-    } else {
-      const { result: filenames, total } = readFromJson(
-        subCategoryId ?? categoryId,
-        "files",
-        6,
-        page
-      );
-
-      files = filenames.map((f: string) =>
-        getFileObject(subCategoryId, f, total)
-      );
+      // @ts-ignore
+      return { files, total };
     }
 
+    const { result: filenames, total } = readFromJson(
+      subCategoryId ?? categoryId,
+      "files",
+      6,
+      page
+    );
+
+    files = filenames.map((f: string) =>
+      getFileObject(subCategoryId, f, total)
+    );
     return { files, total };
   } catch (e) {
     console.log(e);
