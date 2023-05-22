@@ -44,7 +44,7 @@ export const readFolder = async (dir: string, total = 0, page = 0) => {
 
 export const postcardsPath = (categoryId: string, sub?: string) => {
   return path
-    .join(process.cwd(), "public", "postcardimages", categoryId, sub ? sub : "")
+    .join(process.cwd(), "postcardimages", categoryId, sub ? sub : "")
     .toLowerCase();
 };
 
