@@ -55,7 +55,7 @@ export default function Page({
   const [error, setError] = useState<string | null>(null);
 
   const imagePath = path.resolve(
-    "/postcards",
+    "/postcardimages",
     searchParams.categoryId,
     !!searchParams.subcategoryId ? searchParams.subcategoryId : "",
     searchParams.fileName

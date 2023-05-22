@@ -64,7 +64,7 @@ export const readFiles = async (
           let { result: files, total } = await readFolder(dir);
           return {
             localPath: path.resolve(folderPath, folder, "thumbs", files[0]),
-            path: `/postcards/${categoryId.toLowerCase()}/${folder}/thumbs/${
+            path: `/postcardimages/${categoryId.toLowerCase()}/${folder}/thumbs/${
               files[0]
             }`,
             fileName: files[0],
@@ -84,7 +84,7 @@ export const readFiles = async (
     const res = filenames.map((f) => ({
       localPath: path.resolve(folderPath, "thumbs", f),
       path: path.join(
-        "/postcards",
+        "/postcardimages",
         categoryId.toLowerCase(),
         sub ? sub : "",
         "thumbs",
