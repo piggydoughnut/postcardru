@@ -7,6 +7,7 @@ import PostcardPreview from "@/components/PostcardPreview";
 import TopNavigation from "@/components/TopNavigation";
 import { Wrapper } from "@/components/Wrapper";
 import path from "path";
+import { sendEmail } from "@/helpers/email";
 import { useState } from "react";
 
 const PostcardStates = {
@@ -106,6 +107,10 @@ export default function Page({
             });
             if (response.status === 200) {
               const body = await response.json();
+              await sendEmail(
+                recipient.email,
+                `${window.location.origin}/postcards/${body.id}`
+              );
               setPostCardState(PostcardStates.sent);
               setPostcardId(body.id ?? null);
             } else {
