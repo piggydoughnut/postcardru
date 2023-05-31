@@ -10,7 +10,7 @@ export const sendEmail = async (email: string, postcardUrl: string) => {
     key: process.env.NEXT_PUBLIC_EMAIL_API_KEY ?? "",
     url: "https://api.eu.mailgun.net",
   });
-  console.log("Sending a postcard to ", email);
+  console.log("Sending a postcard to an email: ", email);
   const data = {
     from: "PostcardRu  <hello@postcardru.com>",
     to: email,
