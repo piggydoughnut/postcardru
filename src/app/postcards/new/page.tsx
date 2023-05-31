@@ -91,31 +91,35 @@ export default function Page({
         <PostcardPreview
           cardParams={{ imagePath, text, title, sender, recipient }}
           onSend={async () => {
-            setPostCardState(PostcardStates.sending);
-            const response = await fetch(`/api/postcards`, {
-              method: "POST",
-              headers: {
-                "Content-Type": "application/json",
-              },
-              body: JSON.stringify({
-                imagePath,
-                title,
-                text,
-                recipient,
-                sender,
-              }),
-            });
-            if (response.status === 200) {
-              const body = await response.json();
-              await sendEmail(
-                recipient.email,
-                `${window.location.origin}/postcards/${body.id}`
-              );
-              setPostCardState(PostcardStates.sent);
-              setPostcardId(body.id ?? null);
-            } else {
-              setError(response.statusText);
-              setPostCardState(PostcardStates.error);
+            try {
+              setPostCardState(PostcardStates.sending);
+              const response = await fetch(`/api/postcards`, {
+                method: "POST",
+                headers: {
+                  "Content-Type": "application/json",
+                },
+                body: JSON.stringify({
+                  imagePath,
+                  title,
+                  text,
+                  recipient,
+                  sender,
+                }),
+              });
+              if (response.status === 200) {
+                const body = await response.json();
+                await sendEmail(
+                  recipient.email,
+                  `${window.location.origin}/postcards/${body.id}`
+                );
+                setPostCardState(PostcardStates.sent);
+                setPostcardId(body.id ?? null);
+              } else {
+                setError(response.statusText);
+                setPostCardState(PostcardStates.error);
+              }
+            } catch (e) {
+              console.error(e);
             }
           }}
           onBack={() => setPostCardState(PostcardStates.new)}

@@ -5,13 +5,12 @@ export const sendEmail = async (email: string, postcardUrl: string) => {
   const mailgun = new Mailgun(formData);
 
   const DOMAIN = "postcardru.com";
-  console.log(process.env.EMAIL_API_KEY);
   const client = mailgun.client({
     username: "api",
     key: process.env.EMAIL_API_KEY ?? "",
     url: "https://api.eu.mailgun.net",
   });
-  console.log(client);
+  console.log("Sending a postcard to ", email);
   const data = {
     from: "PostcardRu  <hello@postcardru.com>",
     to: email,
