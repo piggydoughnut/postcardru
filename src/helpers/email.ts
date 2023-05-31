@@ -7,7 +7,7 @@ export const sendEmail = async (email: string, postcardUrl: string) => {
   const DOMAIN = "postcardru.com";
   const client = mailgun.client({
     username: "api",
-    key: process.env.EMAIL_API_KEY ?? "",
+    key: process.env.NEXT_PUBLIC_EMAIL_API_KEY ?? "",
     url: "https://api.eu.mailgun.net",
   });
   console.log("Sending a postcard to ", email);
