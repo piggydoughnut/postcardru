@@ -15,7 +15,7 @@ export default function Home() {
     <div className="bg-white ">
       <main
         className="flex min-h-[570px] flex-col bg-white bg-no-repeat bg-top-4"
-        style={{ backgroundImage: "url(bg.svg)" }}
+        style={{ backgroundImage: "url(./bg.svg)" }}
       >
         <div>
           <H1 className="text-center ">Greeting Postcards</H1>
