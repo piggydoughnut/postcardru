@@ -1,6 +1,6 @@
 "use client";
 
-import Image from "next/image";
+import { Arrow } from "./Icons";
 import { addSearchParametersAndRefresh } from "@/helpers/general";
 const PER_PAGE = 6;
 
@@ -13,7 +13,8 @@ export default function Pagination({
   chosenPage: number;
   className?: string;
 }) {
-  const pages = total / PER_PAGE;
+  const pages = Math.round(total / PER_PAGE);
+  const currentPage = Number(chosenPage);
   if (pages < 2) {
     return <></>;
   }
@@ -26,36 +27,62 @@ export default function Pagination({
     addSearchParametersAndRefresh({ page: pageNum });
 
   return (
-    <div className={`flex gap-1 ${className}`}>
-      <Image src="/arr-back.gif" alt="arr-back" width={24} height={24} />
-      {pagination.map((p) => {
-        const amIChosen = Number(chosenPage) === p;
-        return (
-          <div
-            className={`rounded-full w-6 border border-1 ${
-              amIChosen ? "border-heavyBlue" : "border-purpleBlue"
-            }  flex justify-center items-center shadow-md blur-xs`}
-            key={p}
-          >
-            {amIChosen ? (
-              <button
-                onClick={() => handleChoosingPage(p)}
-                className="text-heavyBlue blur-0"
-              >
-                {p}
-              </button>
-            ) : (
-              <button
-                onClick={() => handleChoosingPage(p)}
-                className="text-purpleBlue blur-0"
-              >
-                {p}
-              </button>
-            )}
-          </div>
-        );
-      })}
-      <Image src="/arr-right.gif" alt="arr-right" width={24} height={24} />
+    <div className={`flex gap-3 mt-6 ${className}`}>
+      <button
+        onClick={() => {
+          const nextPage = currentPage - 1;
+          if (nextPage >= 1) {
+            handleChoosingPage(nextPage);
+          }
+        }}
+        className={`${
+          currentPage > 1 ? "hover:cursor-pointer" : "hover:cursor-default"
+        } `}
+      >
+        <Arrow className="rotate-180" />
+      </button>
+      <div className="flex gap-1">
+        {pagination.map((p) => {
+          const amIChosen = currentPage === p;
+          return (
+            <div
+              className={`rounded-full w-6 h-6 border border-1 ${
+                amIChosen ? "border-heavyBlue" : "border-purpleBlue"
+              }  flex justify-center items-center shadow-md blur-xs`}
+              key={p}
+            >
+              {amIChosen ? (
+                <button
+                  onClick={() => handleChoosingPage(p)}
+                  className="text-heavyBlue blur-0"
+                >
+                  {p}
+                </button>
+              ) : (
+                <button
+                  onClick={() => handleChoosingPage(p)}
+                  className="text-purpleBlue blur-0"
+                >
+                  {p}
+                </button>
+              )}
+            </div>
+          );
+        })}
+      </div>
+      <button
+        onClick={() => {
+          const nextPage = currentPage + 1;
+          if (nextPage <= pages) {
+            handleChoosingPage(nextPage);
+          }
+        }}
+        className={`${
+          currentPage != pages ? "hover:cursor-pointer" : "hover:cursor-default"
+        } `}
+      >
+        <Arrow />
+      </button>
     </div>
   );
 }
