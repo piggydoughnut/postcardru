@@ -5,7 +5,7 @@ import path from "path";
 import subcategories from "@/helpers/subcategories.json";
 
 const dirs: Record<string, any> = directories;
-const categoriesWithSubcategories = [
+export const categoriesWithSubcategories = [
   "animals",
   "nature",
   "girls",

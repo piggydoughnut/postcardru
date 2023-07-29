@@ -12,7 +12,7 @@ export default function ImageMesh({
   subcategory?: string;
 }) {
   return (
-    <div className="flex gap-2 flex-wrap justify-center">
+    <div className="flex gap-2 flex-wrap justify-center min-w-[750px]">
       {images?.map((f) => {
         return (
           <div key={f.fileName} className="w-1/4 flex justify-center">
