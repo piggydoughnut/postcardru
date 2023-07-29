@@ -12,8 +12,16 @@ export default function Page({ params }: { params: { postcardId: string } }) {
   const [error, setError] = useState<string | null>(null);
   useEffect(() => {
     fetch(`/api/postcards/${params.postcardId}`)
-      .then((res) => res.json())
-      .then((body) => setCardParams(body));
+      .then((res) => {
+        if (res.status === 200) {
+          return res.json();
+        } else {
+          setError("Card not found");
+        }
+      })
+      .then((body) => {
+        setCardParams(body);
+      });
   }, [params]);
 
   return (
@@ -27,16 +35,21 @@ export default function Page({ params }: { params: { postcardId: string } }) {
           </a>
         </div>
       ) : (
-        <Wrapper className="flex pt-20 text-center">
-          <div className="flex flex-row gap-2 items-baseline">
-            <H2>Searching for your card</H2>
-            <div className="animate-pulse">
-              <div className="flex items-center justify-center space-x-1">
-                <span className="dot dot1 h-1 w-1 bg-heavyBlue rounded-full"></span>
-                <span className="dot dot2 h-1 w-1 bg-heavyBlue rounded-full"></span>
-                <span className="dot dot3 h-1 w-1 bg-heavyBlue rounded-full"></span>
+        <Wrapper className="flex pt-20 text-center min-w-[600px]">
+          <div>
+            {!error && (
+              <div className="flex flex-row gap-4 items-baseline">
+                <H2>Searching for your card</H2>
+                <div className="animate-pulse animate-ping">
+                  <div className="flex items-center justify-center space-x-1">
+                    <span className="dot dot1 h-1 w-1 bg-heavyBlue rounded-full"></span>
+                    <span className="dot dot2 h-1 w-1 bg-heavyBlue rounded-full"></span>
+                    <span className="dot dot3 h-1 w-1 bg-heavyBlue rounded-full"></span>
+                  </div>
+                </div>
               </div>
-            </div>
+            )}
+            {error && <H2 className="text-red-500">{error}</H2>}
           </div>
         </Wrapper>
       )}

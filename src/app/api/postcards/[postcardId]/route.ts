@@ -11,7 +11,7 @@ export async function GET(
     await dbConnect();
     const postcard = await Postcard.findOne({ postcardId: params.postcardId });
     if (!postcard) {
-      return NextResponse.json("whoopsssss");
+      return NextResponse.json({}, { status: 404 });
     }
 
     return NextResponse.json(postcard);

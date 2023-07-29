@@ -1,6 +1,6 @@
-import { H1, H2 } from "../components/Text";
-
+import { H1 } from "../components/Text";
 import Image from "next/image";
+import { RetrieveCard } from "@/components/RetrieveCard";
 import categories from "@/helpers/categories.json";
 
 const categoryNames: Record<string, any> = categories;
@@ -20,12 +20,8 @@ export default function Home() {
         <div>
           <H1 className="text-center ">Greeting Postcards</H1>
           <div className="mt-28 flex flex-col max-w-[600px] mx-auto">
-            <div className="">
-              <H2 className="ml-20">get my postcard</H2>
-              <div className="flex flex-row gap-2">
-                <H2>code: </H2>
-                <input className="border border-l-1 border-l-[#5B00E6] border-r-1 border-r-[#E6E6E6] inset-1 border-t-1 border-t-[#000080] w-32"></input>
-              </div>
+            <div className="-mt-2">
+              <RetrieveCard />
             </div>
           </div>
           <div className="flex items-center justify-center gap-4 mt-8">

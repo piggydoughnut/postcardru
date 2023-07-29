@@ -28,6 +28,9 @@ export default function PostcardPreview({
   onBack?: () => void;
   onSend?: () => void;
 }) {
+  if (!Object.keys(cardParams).length) {
+    return <></>;
+  }
   return (
     <div>
       <Wrapper>
