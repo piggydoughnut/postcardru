@@ -1,7 +1,10 @@
-import { NextApiRequest } from "next";
 import { NextResponse } from "next/server";
 import Postcard from "@/db/postcard";
 import dbConnect from "@/db/connect";
+
+function validateNineDigitNumber(input: string) {
+  return /^\d+$/.test(input) && input.length === 9;
+}
 
 export async function GET(
   request: Request,
@@ -9,7 +12,14 @@ export async function GET(
 ) {
   try {
     await dbConnect();
-    const postcard = await Postcard.findOne({ postcardId: params.postcardId });
+    if (!validateNineDigitNumber(params.postcardId)) {
+      return NextResponse.json(null, { status: 400 });
+    }
+    const id = Number(params.postcardId);
+
+    const postcard = await Postcard.findOne({
+      postcardId: id,
+    });
     if (!postcard) {
       return NextResponse.json({}, { status: 404 });
     }
