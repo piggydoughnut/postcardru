@@ -62,7 +62,7 @@ export default function Page({
     searchParams.fileName
   );
   return (
-    <div className="flex flex-col justify-center items-center mt-4 mx-auto">
+    <div className="flex flex-col justify-center items-center mt-4 max-w-[650px] mx-auto">
       <TopNavigation title={Titles[postCardState]} />
       {postCardState === PostcardStates.new && (
         <PostcardForm

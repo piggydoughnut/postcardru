@@ -13,9 +13,11 @@ module.exports = {
     extend: {
       colors: {
         heavyBlue: "#1C3F6C",
+        darkBlue: "#4C648E",
         mainBlue: "#6F93C2",
         blueGradient:
           "linear-gradient(90deg, rgba(9,54,121,1) 0%, rgba(2,0,36,1) 100%)",
+        purpleBlue: "#B6C1D9",
         paleBlue: "#B7D1E1",
       },
       backgroundImage: {
