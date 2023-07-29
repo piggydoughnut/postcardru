@@ -7,10 +7,12 @@ const HSeparator = ({ className }: { className?: string }) => (
 
 import Image from "next/image";
 import { Wrapper } from "./Wrapper";
+
 type Person = {
   email: string;
   name: string;
 };
+
 export default function PostcardPreview({
   cardParams,
   mode = "preview",
@@ -23,6 +25,7 @@ export default function PostcardPreview({
     title: string;
     sender: Person;
     recipient: Person;
+    music: string;
   };
   mode?: string;
   onBack?: () => void;

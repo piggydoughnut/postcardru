@@ -4,7 +4,10 @@ const HSeparator = () => (
 );
 
 import Image from "next/image";
+import { Select } from "./Select";
 import { Wrapper } from "./Wrapper";
+import backgrounds from "@/helpers/backgrounds.json";
+import musicList from "@/helpers/music.json";
 import titles from "@/helpers/titles";
 import { useState } from "react";
 
@@ -19,6 +22,7 @@ export default function PostcardForm({
 }) {
   const [title, setTitle] = useState("Hi!");
   const [text, setText] = useState("");
+  const [music, setMusic] = useState("");
   const [recipient, setRecipient] = useState({
     name: "",
     email: "",
@@ -135,6 +139,32 @@ export default function PostcardForm({
           </div>
         </div>
       </Wrapper>
+      <div className="flex flex-col border border-1 border-heavyBlue p-2 mt-10">
+        <p className="text-mainBlue">
+          You can customize the following settings to your liking:
+        </p>
+        <Select name="background" className="my-2">
+          {backgrounds.map((item) => (
+            <option key={item.fileName} className="text-sm text-mainBlue">
+              {item.rusName}
+            </option>
+          ))}
+        </Select>
+        <Select
+          name="music"
+          className="my-10"
+          value={music}
+          onChange={(e) => {
+            setMusic(e.target.value);
+          }}
+        >
+          {musicList.map((item) => (
+            <option key={item.fileName} className="text-sm text-mainBlue">
+              {item.rusName}
+            </option>
+          ))}
+        </Select>
+      </div>
       <div className="flex justify-between w-full mt-4">
         <input
           type="button"
@@ -145,7 +175,16 @@ export default function PostcardForm({
         <button
           type="submit"
           className="border-2 border-mainBlue px-1"
-          onClick={() => onNext({ title, text, sender, recipient })}
+          onClick={() =>
+            onNext({
+              title,
+              text,
+              sender,
+              recipient,
+              music:
+                musicList.find((val) => val.rusName === music)?.fileName ?? "",
+            })
+          }
         >
           Next
         </button>

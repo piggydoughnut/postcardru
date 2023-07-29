@@ -69,9 +69,7 @@ export default function Home() {
           {Object.keys(categories).map((category) => {
             return (
               <div key={category} className="px-4 py-1">
-                <h2 className="capitalize text-lg text-mainBlue text-md">
-                  {category}
-                </h2>
+                <h2 className="capitalize text-mainBlue text-md">{category}</h2>
                 <div className="flex flex-wrap mb-2">
                   {categoryNames[category].map(
                     (item: CategoryItem, idx: number) => (

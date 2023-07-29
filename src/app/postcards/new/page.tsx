@@ -46,12 +46,12 @@ export default function Page({
   );
   const [title, setTitle] = useState("Hi!");
   const [text, setText] = useState("");
+  const [music, setMusic] = useState("");
   const [recipient, setRecipient] = useState({
     name: "",
     email: "",
   });
   const [sender, setSender] = useState({ name: "", email: "" });
-
   const [postcardId, setPostcardId] = useState("");
   const [error, setError] = useState<string | null>(null);
 
@@ -61,67 +61,75 @@ export default function Page({
     !!searchParams.subcategoryId ? searchParams.subcategoryId : "",
     searchParams.fileName
   );
+
+  const sendPostcard = async () => {
+    try {
+      setPostCardState(PostcardStates.sending);
+      const response = await fetch(`/api/postcards`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          imagePath,
+          title,
+          text,
+          recipient,
+          sender,
+          music,
+        }),
+      });
+      if (response.status === 200) {
+        const body = await response.json();
+        await sendEmail(
+          recipient.email,
+          `${window.location.origin}/postcards/${body.id}`
+        );
+        setPostCardState(PostcardStates.sent);
+        setPostcardId(body.id ?? null);
+      } else {
+        setError(response.statusText);
+        setPostCardState(PostcardStates.error);
+      }
+    } catch (e) {
+      console.error(e);
+    }
+  };
+
+  const onNextStep = ({
+    title,
+    text,
+    sender,
+    recipient,
+    music,
+  }: {
+    title: string;
+    text: string;
+    sender: Person;
+    recipient: Person;
+    music: string;
+  }) => {
+    setTitle(title);
+    setText(text);
+    setSender(sender);
+    setRecipient(recipient);
+    setMusic(music);
+    setPostCardState(PostcardStates.preview);
+  };
   return (
-    <div className="flex flex-col justify-center items-center mt-4 max-w-[650px] mx-auto">
+    <div className="flex flex-col justify-center items-center mt-4 max-w-[600px] mx-auto mb-10">
       <TopNavigation title={Titles[postCardState]} />
       {postCardState === PostcardStates.new && (
         <PostcardForm
           imagePath={imagePath}
           onBack={() => history.back()}
-          onNext={({
-            title,
-            text,
-            sender,
-            recipient,
-          }: {
-            title: string;
-            text: string;
-            sender: Person;
-            recipient: Person;
-          }) => {
-            setTitle(title);
-            setText(text);
-            setSender(sender);
-            setRecipient(recipient);
-            setPostCardState(PostcardStates.preview);
-          }}
+          onNext={onNextStep}
         />
       )}
       {postCardState === PostcardStates.preview && (
         <PostcardPreview
           cardParams={{ imagePath, text, title, sender, recipient }}
-          onSend={async () => {
-            try {
-              setPostCardState(PostcardStates.sending);
-              const response = await fetch(`/api/postcards`, {
-                method: "POST",
-                headers: {
-                  "Content-Type": "application/json",
-                },
-                body: JSON.stringify({
-                  imagePath,
-                  title,
-                  text,
-                  recipient,
-                  sender,
-                }),
-              });
-              if (response.status === 200) {
-                const body = await response.json();
-                await sendEmail(
-                  recipient.email,
-                  `${window.location.origin}/postcards/${body.id}`
-                );
-                setPostCardState(PostcardStates.sent);
-                setPostcardId(body.id ?? null);
-              } else {
-                setError(response.statusText);
-                setPostCardState(PostcardStates.error);
-              }
-            } catch (e) {
-              console.error(e);
-            }
-          }}
+          onSend={() => sendPostcard()}
           onBack={() => setPostCardState(PostcardStates.new)}
         />
       )}
