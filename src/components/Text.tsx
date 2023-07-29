@@ -45,3 +45,19 @@ export const H3 = ({
     {children}
   </p>
 );
+
+export const H4 = ({
+  className,
+  type,
+  children,
+}: {
+  className?: string;
+  type?: string;
+  children: React.ReactNode | string;
+}) => (
+  <p
+    className={`${niconne.className} text-lg tracking-widest text-mainBlue ${className}`}
+  >
+    {children}
+  </p>
+);

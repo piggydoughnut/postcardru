@@ -23,8 +23,13 @@ export default function Pagination({
     pagination.push(i + 1);
   }
 
-  const handleChoosingPage = (pageNum: number) =>
-    addSearchParametersAndRefresh({ page: pageNum });
+  const handleChoosingPage = (pageNum: number, total: number) => {
+    let newPage = pageNum % total;
+    if (!newPage) {
+      newPage = pageNum;
+    }
+    addSearchParametersAndRefresh({ page: newPage });
+  };
 
   return (
     <div className={`flex gap-3 mt-6 ${className}`}>
@@ -32,7 +37,7 @@ export default function Pagination({
         onClick={() => {
           const nextPage = currentPage - 1;
           if (nextPage >= 1) {
-            handleChoosingPage(nextPage);
+            handleChoosingPage(nextPage, pages);
           }
         }}
         className={`${
@@ -53,14 +58,14 @@ export default function Pagination({
             >
               {amIChosen ? (
                 <button
-                  onClick={() => handleChoosingPage(p)}
+                  onClick={() => handleChoosingPage(p, pages)}
                   className="text-heavyBlue blur-0"
                 >
                   {p}
                 </button>
               ) : (
                 <button
-                  onClick={() => handleChoosingPage(p)}
+                  onClick={() => handleChoosingPage(p, pages)}
                   className="text-purpleBlue blur-0"
                 >
                   {p}
@@ -74,7 +79,7 @@ export default function Pagination({
         onClick={() => {
           const nextPage = currentPage + 1;
           if (nextPage <= pages) {
-            handleChoosingPage(nextPage);
+            handleChoosingPage(nextPage, pages);
           }
         }}
         className={`${
