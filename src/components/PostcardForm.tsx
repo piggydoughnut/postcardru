@@ -23,6 +23,7 @@ export default function PostcardForm({
   const [title, setTitle] = useState("Hi!");
   const [text, setText] = useState("");
   const [music, setMusic] = useState("");
+  const [background, setBackground] = useState("");
   const [recipient, setRecipient] = useState({
     name: "",
     email: "",
@@ -143,10 +144,20 @@ export default function PostcardForm({
         <p className="text-mainBlue">
           You can customize the following settings to your liking:
         </p>
-        <Select name="background" className="my-2">
-          {backgrounds.map((item) => (
-            <option key={item.fileName} className="text-sm text-mainBlue">
-              {item.rusName}
+        <Select
+          name="background"
+          className="my-2"
+          value={background}
+          onChange={(e) => {
+            setBackground(e.target.value);
+          }}
+        >
+          {backgrounds.map((item, idx) => (
+            <option
+              key={`${idx}-${item.fileName}`}
+              className="text-sm text-mainBlue"
+            >
+              {item.eng}
             </option>
           ))}
         </Select>
@@ -181,6 +192,7 @@ export default function PostcardForm({
               text,
               sender,
               recipient,
+              background,
               music:
                 musicList.find((val) => val.rusName === music)?.fileName ?? "",
             })

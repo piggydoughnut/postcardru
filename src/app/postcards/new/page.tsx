@@ -6,6 +6,7 @@ import PostcardForm from "@/components/PostcardForm";
 import PostcardPreview from "@/components/PostcardPreview";
 import TopNavigation from "@/components/TopNavigation";
 import { Wrapper } from "@/components/Wrapper";
+import backgrounds from "@/helpers/backgrounds.json";
 import path from "path";
 import { sendEmail } from "@/helpers/email";
 import { useState } from "react";
@@ -47,6 +48,7 @@ export default function Page({
   const [title, setTitle] = useState("Hi!");
   const [text, setText] = useState("");
   const [music, setMusic] = useState("");
+  const [background, setBackground] = useState("");
   const [recipient, setRecipient] = useState({
     name: "",
     email: "",
@@ -102,61 +104,101 @@ export default function Page({
     sender,
     recipient,
     music,
+    background,
   }: {
     title: string;
     text: string;
     sender: Person;
     recipient: Person;
     music: string;
+    background: string;
   }) => {
     setTitle(title);
     setText(text);
     setSender(sender);
     setRecipient(recipient);
     setMusic(music);
+    setBackground(
+      backgrounds.find((item) => item.eng === background)?.fileName ?? ""
+    );
     setPostCardState(PostcardStates.preview);
   };
   return (
-    <div className="flex flex-col justify-center items-center mt-4 max-w-[600px] mx-auto mb-10">
-      <TopNavigation title={Titles[postCardState]} />
-      {postCardState === PostcardStates.new && (
-        <PostcardForm
-          imagePath={imagePath}
-          onBack={() => history.back()}
-          onNext={onNextStep}
-        />
-      )}
-      {postCardState === PostcardStates.preview && (
-        <PostcardPreview
-          cardParams={{ imagePath, text, title, sender, recipient }}
-          onSend={() => sendPostcard()}
-          onBack={() => setPostCardState(PostcardStates.new)}
-        />
-      )}
-      {postCardState === PostcardStates.sending && (
-        <Wrapper className="flex pt-20 text-center">
-          <H2>We are sending your card please be patient...</H2>
-        </Wrapper>
-      )}
-      {postcardId && postCardState === PostcardStates.sent && (
-        <Wrapper className="flex pt-20 text-center">
-          <div className="text-mainBlue">
-            <H1>Postcard sent</H1>
-            <p>
-              You can preview your sent postcard here: <br />
-              <a
-                className="underline hover:text-blue-600"
-                href={`${window.location.origin}/postcards/${postcardId}`}
-              >{`${window.location.origin}/postcards/${postcardId}`}</a>
-            </p>
-          </div>
-        </Wrapper>
-      )}
-      {postCardState === PostcardStates.error && (
-        <div>
-          <h2> Err: {error}</h2>
+    <div>
+      <div className="flex flex-col justify-center items-center mt-4 max-w-[600px] mx-auto mb-2">
+        <TopNavigation title={Titles[postCardState]} />
+      </div>
+      <div
+        className="h-full bg-contain"
+        style={{
+          backgroundImage: `url(/backgrounds/${
+            postCardState === PostcardStates.preview ? background : ""
+          })`,
+        }}
+      >
+        <div className="flex flex-col justify-center items-center mt-4 max-w-[600px] mx-auto mb-10">
+          {postCardState === PostcardStates.new && (
+            <PostcardForm
+              imagePath={imagePath}
+              onBack={() => history.back()}
+              onNext={onNextStep}
+            />
+          )}
+          {postCardState === PostcardStates.preview && (
+            <PostcardPreview
+              cardParams={{
+                imagePath,
+                text,
+                background,
+                title,
+                sender,
+                recipient,
+              }}
+            />
+          )}
+          {postCardState === PostcardStates.sending && (
+            <Wrapper className="flex pt-20 text-center">
+              <H2>We are sending your card please be patient...</H2>
+            </Wrapper>
+          )}
+          {postcardId && postCardState === PostcardStates.sent && (
+            <Wrapper className="flex pt-20 text-center">
+              <div className="text-mainBlue">
+                <H1>Postcard sent</H1>
+                <p>
+                  You can preview your sent postcard here: <br />
+                  <a
+                    className="underline hover:text-blue-600"
+                    href={`${window.location.origin}/postcards/${postcardId}`}
+                  >{`${window.location.origin}/postcards/${postcardId}`}</a>
+                </p>
+              </div>
+            </Wrapper>
+          )}
+          {postCardState === PostcardStates.preview && (
+            <div className="flex justify-between w-full mt-4">
+              <input
+                type="button"
+                className="border-2 border-mainBlue px-1"
+                value="Back"
+                onClick={() => setPostCardState(PostcardStates.new)}
+              ></input>
+              <button
+                type="submit"
+                className="border-2 border-mainBlue px-1"
+                onClick={() => sendPostcard()}
+              >
+                Next
+              </button>
+            </div>
+          )}
+          {postCardState === PostcardStates.error && (
+            <div>
+              <h2> Err: {error}</h2>
+            </div>
+          )}
         </div>
-      )}
+      </div>
     </div>
   );
 }

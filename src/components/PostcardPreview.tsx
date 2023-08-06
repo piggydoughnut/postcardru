@@ -26,6 +26,7 @@ export default function PostcardPreview({
     sender: Person;
     recipient: Person;
     music: string;
+    background: string;
   };
   mode?: string;
   onBack?: () => void;
@@ -83,25 +84,6 @@ export default function PostcardPreview({
           </div>
         </div>
       </Wrapper>
-      {onSend && (
-        <div className="flex justify-between w-full mt-4">
-          <input
-            type="button"
-            className="border-2 border-mainBlue px-1"
-            value="Back"
-            onClick={onBack}
-          ></input>
-          <button
-            type="submit"
-            className="border-2 border-mainBlue px-1"
-            onClick={() => {
-              onSend();
-            }}
-          >
-            Next
-          </button>
-        </div>
-      )}
     </div>
   );
 }

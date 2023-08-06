@@ -1,294 +1,367 @@
 [
   {
     "fileName": "0.gif",
-    "rusName": "фон открытки"
+    "ru": "фон открытки",
+    "eng": "Card Background"
   },
   {
     "fileName": "0.gif",
-    "rusName": "-- Без фона --"
+    "ru": "-- Без фона --",
+    "eng": "-- No Background --"
   },
   {
     "fileName": "bh.gif",
-    "rusName": "Летающие сердечки"
+    "ru": "Летающие сердечки",
+    "eng": "Flying Hearts"
   },
   {
     "fileName": "heart4.gif",
-    "rusName": "Мозаика сердец"
+    "ru": "Мозаика сердец",
+    "eng": "Heart Mosaic"
   },
   {
     "fileName": "bg2.gif",
-    "rusName": "Сердечки - 1"
+    "ru": "Сердечки - 1",
+    "eng": "Hearts - 1"
   },
   {
     "fileName": "d9.gif",
-    "rusName": "Сердечки - 2"
+    "ru": "Сердечки - 2",
+    "eng": "Hearts - 2"
   },
   {
     "fileName": "bhs.gif",
-    "rusName": "Сердечки - 3"
+    "ru": "Сердечки - 3",
+    "eng": "Hearts - 3"
   },
   {
     "fileName": "hearts.gif",
-    "rusName": "Сердечки - 4"
+    "ru": "Сердечки - 4",
+    "eng": "Hearts - 4"
   },
   {
     "fileName": "bgl1.jpg",
-    "rusName": "цветы"
+    "ru": "цветы",
+    "eng": "Flowers"
   },
   {
     "fileName": "blob.jpg",
-    "rusName": "Акварель - 1"
+    "ru": "Акварель - 1",
+    "eng": "Watercolor - 1"
   },
   {
     "fileName": "desert1.jpg",
-    "rusName": "Акварель - 2"
+    "ru": "Акварель - 2",
+    "eng": "Watercolor - 2"
   },
   {
     "fileName": "d17.gif",
-    "rusName": "Бабочки"
+    "ru": "Бабочки",
+    "eng": "Butterflies"
   },
   {
     "fileName": "tworosebg.jpg",
-    "rusName": "Белые розы"
+    "ru": "Белые розы",
+    "eng": "White Roses"
   },
   {
     "fileName": "o035.jpg",
-    "rusName": "Булыжники"
+    "ru": "Булыжники",
+    "eng": "Pebbles"
   },
   {
     "fileName": "pasteli.gif",
-    "rusName": "В ярких тонах"
+    "ru": "В ярких тонах",
+    "eng": "Bright Colors"
   },
   {
     "fileName": "123valenback.jpg",
-    "rusName": "Валентинки"
+    "ru": "Валентинки",
+    "eng": "Valentines"
   },
   {
     "fileName": "jeweled.gif",
-    "rusName": "Витраж"
+    "ru": "Витраж",
+    "eng": "Stained Glass"
   },
   {
     "fileName": "o022.jpg",
-    "rusName": "Водоворот"
+    "ru": "Водоворот",
+    "eng": "Whirlpool"
   },
   {
     "fileName": "d16.gif",
-    "rusName": "Воздушные шары"
+    "ru": "Воздушные шары",
+    "eng": "Balloons"
   },
   {
     "fileName": "a125.jpg",
-    "rusName": "Голубые следы"
+    "ru": "Голубые следы",
+    "eng": "Blue Traces"
   },
   {
     "fileName": "flames.gif",
-    "rusName": "Горящие полосы"
+    "ru": "Горящие полосы",
+    "eng": "Burning Stripes"
   },
   {
     "fileName": "123bdaymainbg.jpg",
-    "rusName": "День рождения - шарики"
+    "ru": "День рождения - шарики",
+    "eng": "Birthday - Balloons"
   },
   {
     "fileName": "rain.gif",
-    "rusName": "Дождливый день"
+    "ru": "Дождливый день",
+    "eng": "Rainy Day"
   },
   {
     "fileName": "chains.jpg",
-    "rusName": "Желтая цепь"
+    "ru": "Желтая цепь",
+    "eng": "Yellow Chain"
   },
   {
     "fileName": "a008.jpg",
-    "rusName": "Желтое пламя"
+    "ru": "Желтое пламя",
+    "eng": "Yellow Flame"
   },
   {
     "fileName": "d14.gif",
-    "rusName": "Журавли"
+    "ru": "Журавли",
+    "eng": "Cranes"
   },
   {
     "fileName": "o002.jpg",
-    "rusName": "Зеленая стежка"
+    "ru": "Зеленая стежка",
+    "eng": "Green Stitch"
   },
   {
     "fileName": "o032.jpg",
-    "rusName": "Зеленые листья"
+    "ru": "Зеленые листья",
+    "eng": "Green Leaves"
   },
   {
     "fileName": "jadetile.gif",
-    "rusName": "Зеленые ромбы"
+    "ru": "Зеленые ромбы",
+    "eng": "Green Diamonds"
   },
   {
     "fileName": "overlap.gif",
-    "rusName": "Каменный орнамент"
+    "ru": "Каменный орнамент",
+    "eng": "Stone Ornament"
   },
   {
     "fileName": "firering.gif",
-    "rusName": "Кольчуга ада"
+    "ru": "Кольчуга ада",
+    "eng": "Hellish Chainmail"
   },
   {
     "fileName": "bluemaze.gif",
-    "rusName": "Компьютерный лабиринт"
+    "ru": "Компьютерный лабиринт",
+    "eng": "Computer Maze"
   },
   {
     "fileName": "d11.gif",
-    "rusName": "Красные розы на черном"
+    "ru": "Красные розы на черном",
+    "eng": "Red Roses on Black"
   },
   {
     "fileName": "n000.jpg",
-    "rusName": "Кремний"
+    "ru": "Кремний",
+    "eng": "Silicon"
   },
   {
     "fileName": "bluesilk.jpg",
-    "rusName": "Кроватка"
+    "ru": "Кроватка",
+    "eng": "Crib"
   },
   {
     "fileName": "a046.jpg",
-    "rusName": "Лава"
+    "ru": "Лава",
+    "eng": "Lava"
   },
   {
     "fileName": "o025.jpg",
-    "rusName": "Листопад"
+    "ru": "Листопад",
+    "eng": "Falling Leaves"
   },
   {
     "fileName": "o024.jpg",
-    "rusName": "Малина"
+    "ru": "Малина",
+    "eng": "Raspberry"
   },
   {
     "fileName": "a097.jpg",
-    "rusName": "Меловка"
+    "ru": "Меловка",
+    "eng": "Chalk"
   },
   {
     "fileName": "n039.jpg",
-    "rusName": "Мокрый асфальт"
+    "ru": "Мокрый асфальт",
+    "eng": "Wet Asphalt"
   },
   {
     "fileName": "n036.jpg",
-    "rusName": "Морской берег"
+    "ru": "Морской берег",
+    "eng": "Seashore"
   },
   {
     "fileName": "a098.jpg",
-    "rusName": "Наждак"
+    "ru": "Наждак",
+    "eng": "Whetstone"
   },
   {
     "fileName": "ny.gif",
-    "rusName": "Новогодний фон"
+    "ru": "Новогодний фон",
+    "eng": "New Year Background"
   },
   {
     "fileName": "backg.gif",
-    "rusName": "Облака"
+    "ru": "Облака",
+    "eng": "Clouds"
   },
   {
     "fileName": "tiles20.gif",
-    "rusName": "Обои"
+    "ru": "Обои",
+    "eng": "Wallpaper"
   },
   {
     "fileName": "o034.jpg",
-    "rusName": "Паркет"
+    "ru": "Паркет",
+    "eng": "Parquet"
   },
   {
     "fileName": "pastel.jpg",
-    "rusName": "Пастель"
+    "ru": "Пастель",
+    "eng": "Pastel"
   },
   {
     "fileName": "lovesongpgbg.jpg",
-    "rusName": "Песня любви"
+    "ru": "Песня любви",
+    "eng": "Love Song"
   },
   {
     "fileName": "everydaypgbg.jpg",
-    "rusName": "Поздравления"
+    "ru": "Поздравления",
+    "eng": "Greetings"
   },
   {
     "fileName": "d10.gif",
-    "rusName": "Полоски из роз"
+    "ru": "Полоски из роз",
+    "eng": "Strips of Roses"
   },
   {
     "fileName": "back3.gif",
-    "rusName": "Радуга"
+    "ru": "Радуга",
+    "eng": "Rainbow"
   },
   {
     "fileName": "coral2.gif",
-    "rusName": "Радужные кораллы"
+    "ru": "Радужные кораллы",
+    "eng": "Rainbow Corals"
   },
   {
     "fileName": "candy1.gif",
-    "rusName": "Разноцветные сердечки"
+    "ru": "Разноцветные сердечки",
+    "eng": "Multicolored Hearts"
   },
   {
     "fileName": "d5.gif",
-    "rusName": "Розовые подарочки"
+    "ru": "Розовые подарочки",
+    "eng": "Pink Presents"
   },
   {
     "fileName": "d2.gif",
-    "rusName": "Розочки на розовом"
+    "ru": "Розочки на розовом",
+    "eng": "Roses on Pink"
   },
   {
     "fileName": "d41.gif",
-    "rusName": "Розы в сетке"
+    "ru": "Розы в сетке",
+    "eng": "Roses in a Grid"
   },
   {
     "fileName": "bgrus.gif",
-    "rusName": "Россия"
+    "ru": "Россия",
+    "eng": "Russia"
   },
   {
     "fileName": "d13.gif",
-    "rusName": "Самолетик в небе"
+    "ru": "Самолетик в небе",
+    "eng": "Airplane in the Sky"
   },
   {
     "fileName": "d15.gif",
-    "rusName": "Самолеты"
+    "ru": "Самолеты",
+    "eng": "Airplanes"
   },
   {
     "fileName": "d20.gif",
-    "rusName": "Светлый мрамор"
+    "ru": "Светлый мрамор",
+    "eng": "Light Marble"
   },
   {
     "fileName": "a023.jpg",
-    "rusName": "Синие волны"
+    "ru": "Синие волны",
+    "eng": "Blue Waves"
   },
   {
     "fileName": "a006.jpg",
-    "rusName": "Синие кораллы"
+    "ru": "Синие кораллы",
+    "eng": "Blue Corals"
   },
   {
     "fileName": "n052.jpg",
-    "rusName": "Сирень"
+    "ru": "Сирень",
+    "eng": "Lilac"
   },
   {
     "fileName": "a000.jpg",
-    "rusName": "Ситец"
+    "ru": "Ситец",
+    "eng": "Chintz"
   },
   {
     "fileName": "o003.jpg",
-    "rusName": "Солома"
+    "ru": "Солома",
+    "eng": "Straw"
   },
   {
     "fileName": "e_grid.gif",
-    "rusName": "Тетрадь в клетку"
+    "ru": "Тетрадь в клетку",
+    "eng": "Notebook Graph"
   },
   {
     "fileName": "exam_bk.gif",
-    "rusName": "Тетрадь в линейку"
+    "ru": "Тетрадь в линейку",
+    "eng": "Notebook Lined"
   },
   {
     "fileName": "mus_no_s.gif",
-    "rusName": "Тетрадь для нот"
+    "ru": "Тетрадь для нот",
+    "eng": "Notebook for Notes"
   },
   {
     "fileName": "arrows1.gif",
-    "rusName": "Ужасные стрелочки"
+    "ru": "Ужасные стрелочки",
+    "eng": "Terrible Arrows"
   },
   {
     "fileName": "flowrs01.gif",
-    "rusName": "Цветы полевые"
+    "ru": "Цветы полевые",
+    "eng": "Wildflowers"
   },
   {
     "fileName": "n089.jpg",
-    "rusName": "Шахматы"
+    "ru": "Шахматы",
+    "eng": "Chess"
   },
   {
     "fileName": "o004.jpg",
-    "rusName": "Шишки"
+    "ru": "Шишки",
+    "eng": "Pinecones"
   },
   {
     "fileName": "glyphs1.gif",
-    "rusName": "Яркая солянка"
+    "ru": "Яркая солянка",
+    "eng": "Bright Solianka"
   }
 ]
