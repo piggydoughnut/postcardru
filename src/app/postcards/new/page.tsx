@@ -175,23 +175,6 @@ export default function Page({
               </div>
             </Wrapper>
           )}
-          {postCardState === PostcardStates.preview && (
-            <div className="flex justify-between w-full mt-4">
-              <input
-                type="button"
-                className="border-2 border-mainBlue px-1"
-                value="Back"
-                onClick={() => setPostCardState(PostcardStates.new)}
-              ></input>
-              <button
-                type="submit"
-                className="border-2 border-mainBlue px-1"
-                onClick={() => sendPostcard()}
-              >
-                Next
-              </button>
-            </div>
-          )}
           {postCardState === PostcardStates.error && (
             <div>
               <h2> Err: {error}</h2>
@@ -199,6 +182,23 @@ export default function Page({
           )}
         </div>
       </div>
+      {postCardState === PostcardStates.preview && (
+        <div className="flex justify-between w-full mt-4 max-w-[600px] mx-auto">
+          <input
+            type="button"
+            className="border-2 border-mainBlue px-1"
+            value="Back"
+            onClick={() => setPostCardState(PostcardStates.new)}
+          ></input>
+          <button
+            type="submit"
+            className="border-2 border-mainBlue px-1"
+            onClick={() => sendPostcard()}
+          >
+            Next
+          </button>
+        </div>
+      )}
     </div>
   );
 }
