@@ -25,9 +25,23 @@ export default function PostcardPreview({
     recipient: Person;
     music: string;
     background: string;
+    musicFileName: string;
   };
   mode?: string;
 }) {
+  // @todo
+  // const musicUrl = useMemo(
+  //   () => `http://localhost:3000/music/${cardParams.musicFileName}`,
+  //   [cardParams.musicFileName]
+  // );
+  // useEffect(() => {
+  //   MIDI.loadPlugin(() => console.log("loaded"));
+  //   MIDI.Player.loadFile(musicUrl, () => {
+  //     console.log("success");
+  //     MIDI.Player.start();
+  //   }); // load .MIDI from base64 or binary XML request.
+  // }, [musicUrl]);
+
   if (!Object.keys(cardParams).length) {
     return <></>;
   }

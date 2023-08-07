@@ -45,7 +45,12 @@ export default function Page({
   const [postCardState, setPostCardState] = useState<string>(
     PostcardStates.new
   );
-  const [cardParams, setCardParams] = useState<CardParameters>({
+  const [cardParams, setCardParams] = useState<
+    CardParameters & {
+      backgroundFileName: string | null;
+      musicFileName: string | null;
+    }
+  >({
     title: params.title ?? "Hi!",
     text: params.text ?? "",
     music: params.music ?? "",
@@ -58,6 +63,8 @@ export default function Page({
       name: params.sender?.name ?? "",
       email: params.sender?.email ?? "",
     },
+    backgroundFileName: null,
+    musicFileName: null,
   });
   const [postcardId, setPostcardId] = useState("");
   const [error, setError] = useState<string | null>(null);
@@ -71,6 +78,16 @@ export default function Page({
         searchParams.fileName
       ),
     [searchParams]
+  );
+
+  const backgroundUrl = React.useMemo(
+    () =>
+      `url(/backgrounds/${
+        postCardState === PostcardStates.preview
+          ? cardParams.backgroundFileName
+          : ""
+      })`,
+    [cardParams.backgroundFileName, postCardState]
   );
 
   const sendPostcard = async () => {
@@ -100,11 +117,11 @@ export default function Page({
   const onNextStep = (params: CardParameters) => {
     setCardParams({
       ...params,
-      music:
-        musicList.find((val) => val.rusName === params.music)?.fileName ?? "",
-      background:
+      musicFileName:
+        musicList.find((val) => val.rusName === params.music)?.fileName ?? null,
+      backgroundFileName:
         backgrounds.find((item) => item.eng === params.background)?.fileName ??
-        "",
+        null,
     });
     setPostCardState(PostcardStates.preview);
   };
@@ -115,11 +132,11 @@ export default function Page({
       </div>
       <div
         className="h-full bg-repeat"
-        style={{
-          backgroundImage: `url(/backgrounds/${
-            postCardState === PostcardStates.preview ? params.background : ""
-          })`,
-        }}
+        style={
+          backgroundUrl && {
+            backgroundImage: backgroundUrl,
+          }
+        }
       >
         <div className="flex flex-col justify-center items-center mt-4 max-w-[600px] mx-auto mb-10">
           {postCardState === PostcardStates.new && (

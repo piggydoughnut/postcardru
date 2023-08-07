@@ -120,7 +120,7 @@ export default function PostcardForm({
             </option>
           ))}
         </Select>
-        <Select
+        {/* <Select
           name="music"
           className="my-10"
           value={cardParams.music}
@@ -131,7 +131,7 @@ export default function PostcardForm({
               {item.rusName}
             </option>
           ))}
-        </Select>
+        </Select> */}
       </div>
       <div className="flex justify-between w-full mt-4">
         <input
