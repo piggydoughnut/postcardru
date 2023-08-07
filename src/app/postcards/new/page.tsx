@@ -2,13 +2,17 @@
 
 import { H1, H2 } from "@/components/Text";
 
+import { CardParameters } from "@/helpers/types";
 import PostcardForm from "@/components/PostcardForm";
 import PostcardPreview from "@/components/PostcardPreview";
+import React from "react";
 import TopNavigation from "@/components/TopNavigation";
 import { Wrapper } from "@/components/Wrapper";
 import backgrounds from "@/helpers/backgrounds.json";
+import musicList from "@/helpers/music.json";
 import path from "path";
 import { sendEmail } from "@/helpers/email";
+import { sendPostcardApi } from "@/helpers/api";
 import { useState } from "react";
 
 const PostcardStates = {
@@ -26,10 +30,6 @@ const Titles: Record<string, string> = {
   [PostcardStates.sent]: "Your card has been sent",
 };
 
-type Person = {
-  email: string;
-  name: string;
-};
 export default function Page({
   params,
   searchParams,
@@ -45,46 +45,45 @@ export default function Page({
   const [postCardState, setPostCardState] = useState<string>(
     PostcardStates.new
   );
-  const [title, setTitle] = useState("Hi!");
-  const [text, setText] = useState("");
-  const [music, setMusic] = useState("");
-  const [background, setBackground] = useState("");
-  const [recipient, setRecipient] = useState({
-    name: "",
-    email: "",
+  const [cardParams, setCardParams] = useState<CardParameters>({
+    title: params.title ?? "Hi!",
+    text: params.text ?? "",
+    music: params.music ?? "",
+    background: params.background ?? "",
+    recipient: {
+      name: params.recipient?.name ?? "",
+      email: params.recipient?.email ?? "",
+    },
+    sender: {
+      name: params.sender?.name ?? "",
+      email: params.sender?.email ?? "",
+    },
   });
-  const [sender, setSender] = useState({ name: "", email: "" });
   const [postcardId, setPostcardId] = useState("");
   const [error, setError] = useState<string | null>(null);
 
-  const imagePath = path.resolve(
-    "/postcardimages",
-    searchParams.categoryId,
-    !!searchParams.subcategoryId ? searchParams.subcategoryId : "",
-    searchParams.fileName
+  const imagePath = React.useMemo(
+    () =>
+      path.resolve(
+        "/postcardimages",
+        searchParams.categoryId,
+        !!searchParams.subcategoryId ? searchParams.subcategoryId : "",
+        searchParams.fileName
+      ),
+    [searchParams]
   );
 
   const sendPostcard = async () => {
     try {
       setPostCardState(PostcardStates.sending);
-      const response = await fetch(`/api/postcards`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          imagePath,
-          title,
-          text,
-          recipient,
-          sender,
-          music,
-        }),
+      const response = await sendPostcardApi({
+        imagePath,
+        ...cardParams,
       });
       if (response.status === 200) {
         const body = await response.json();
         await sendEmail(
-          recipient.email,
+          cardParams.recipient.email,
           `${window.location.origin}/postcards/${body.id}`
         );
         setPostCardState(PostcardStates.sent);
@@ -98,29 +97,15 @@ export default function Page({
     }
   };
 
-  const onNextStep = ({
-    title,
-    text,
-    sender,
-    recipient,
-    music,
-    background,
-  }: {
-    title: string;
-    text: string;
-    sender: Person;
-    recipient: Person;
-    music: string;
-    background: string;
-  }) => {
-    setTitle(title);
-    setText(text);
-    setSender(sender);
-    setRecipient(recipient);
-    setMusic(music);
-    setBackground(
-      backgrounds.find((item) => item.eng === background)?.fileName ?? ""
-    );
+  const onNextStep = (params: CardParameters) => {
+    setCardParams({
+      ...params,
+      music:
+        musicList.find((val) => val.rusName === params.music)?.fileName ?? "",
+      background:
+        backgrounds.find((item) => item.eng === params.background)?.fileName ??
+        "",
+    });
     setPostCardState(PostcardStates.preview);
   };
   return (
@@ -129,10 +114,10 @@ export default function Page({
         <TopNavigation title={Titles[postCardState]} />
       </div>
       <div
-        className="h-full bg-contain"
+        className="h-full bg-repeat"
         style={{
           backgroundImage: `url(/backgrounds/${
-            postCardState === PostcardStates.preview ? background : ""
+            postCardState === PostcardStates.preview ? params.background : ""
           })`,
         }}
       >
@@ -142,17 +127,14 @@ export default function Page({
               imagePath={imagePath}
               onBack={() => history.back()}
               onNext={onNextStep}
+              params={cardParams}
             />
           )}
           {postCardState === PostcardStates.preview && (
             <PostcardPreview
               cardParams={{
                 imagePath,
-                text,
-                background,
-                title,
-                sender,
-                recipient,
+                ...cardParams,
               }}
             />
           )}

@@ -16,8 +16,6 @@ type Person = {
 export default function PostcardPreview({
   cardParams,
   mode = "preview",
-  onBack,
-  onSend,
 }: {
   cardParams: {
     imagePath: string;
@@ -29,8 +27,6 @@ export default function PostcardPreview({
     background: string;
   };
   mode?: string;
-  onBack?: () => void;
-  onSend?: () => void;
 }) {
   if (!Object.keys(cardParams).length) {
     return <></>;
