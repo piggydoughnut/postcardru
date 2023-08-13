@@ -47,8 +47,8 @@ export default function Page({
   );
   const [cardParams, setCardParams] = useState<
     CardParameters & {
-      backgroundFileName: string | null;
-      musicFileName: string | null;
+      backgroundFileName: string;
+      musicFileName: string;
     }
   >({
     title: params.title ?? "Hi!",
@@ -63,8 +63,8 @@ export default function Page({
       name: params.sender?.name ?? "",
       email: params.sender?.email ?? "",
     },
-    backgroundFileName: null,
-    musicFileName: null,
+    backgroundFileName: "",
+    musicFileName: "",
   });
   const [postcardId, setPostcardId] = useState("");
   const [error, setError] = useState<string | null>(null);
@@ -118,10 +118,10 @@ export default function Page({
     setCardParams({
       ...params,
       musicFileName:
-        musicList.find((val) => val.rusName === params.music)?.fileName ?? null,
+        musicList.find((val) => val.rusName === params.music)?.fileName ?? "",
       backgroundFileName:
         backgrounds.find((item) => item.eng === params.background)?.fileName ??
-        null,
+        "",
     });
     setPostCardState(PostcardStates.preview);
   };
@@ -132,11 +132,9 @@ export default function Page({
       </div>
       <div
         className="h-full bg-repeat"
-        style={
-          backgroundUrl && {
-            backgroundImage: backgroundUrl,
-          }
-        }
+        style={{
+          backgroundImage: backgroundUrl ?? null,
+        }}
       >
         <div className="flex flex-col justify-center items-center mt-4 max-w-[600px] mx-auto mb-10">
           {postCardState === PostcardStates.new && (

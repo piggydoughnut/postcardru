@@ -40,7 +40,7 @@ export default function PostcardForm({
     },
   });
 
-  const updateCardParams = (property: string, value: string) => {
+  const updateCardParams = (property: string, value: any) => {
     setCardParams((prevCardParams) => ({
       ...prevCardParams,
       [property]: value,
