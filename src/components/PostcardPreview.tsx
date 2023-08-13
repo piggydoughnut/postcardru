@@ -7,15 +7,15 @@ const HSeparator = ({ className }: { className?: string }) => (
 
 import Image from "next/image";
 import { Wrapper } from "./Wrapper";
+
 type Person = {
   email: string;
   name: string;
 };
+
 export default function PostcardPreview({
   cardParams,
   mode = "preview",
-  onBack,
-  onSend,
 }: {
   cardParams: {
     imagePath: string;
@@ -23,11 +23,25 @@ export default function PostcardPreview({
     title: string;
     sender: Person;
     recipient: Person;
+    music: string;
+    background: string;
+    musicFileName: string;
   };
   mode?: string;
-  onBack?: () => void;
-  onSend?: () => void;
 }) {
+  // @todo
+  // const musicUrl = useMemo(
+  //   () => `http://localhost:3000/music/${cardParams.musicFileName}`,
+  //   [cardParams.musicFileName]
+  // );
+  // useEffect(() => {
+  //   MIDI.loadPlugin(() => console.log("loaded"));
+  //   MIDI.Player.loadFile(musicUrl, () => {
+  //     console.log("success");
+  //     MIDI.Player.start();
+  //   }); // load .MIDI from base64 or binary XML request.
+  // }, [musicUrl]);
+
   if (!Object.keys(cardParams).length) {
     return <></>;
   }
@@ -80,25 +94,6 @@ export default function PostcardPreview({
           </div>
         </div>
       </Wrapper>
-      {onSend && (
-        <div className="flex justify-between w-full mt-4">
-          <input
-            type="button"
-            className="border-2 border-mainBlue px-1"
-            value="Back"
-            onClick={onBack}
-          ></input>
-          <button
-            type="submit"
-            className="border-2 border-mainBlue px-1"
-            onClick={() => {
-              onSend();
-            }}
-          >
-            Next
-          </button>
-        </div>
-      )}
     </div>
   );
 }

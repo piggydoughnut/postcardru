@@ -3,27 +3,49 @@ const HSeparator = () => (
   <div className=" mt-4 mb-2  w-full border border-b-[0.5px] opacity-50 border-heavyBlue"></div>
 );
 
+import { CardParameters, Person } from "@/helpers/types";
+
+import AddressFields from "./AddressFields";
 import Image from "next/image";
+import { Select } from "./Select";
 import { Wrapper } from "./Wrapper";
+import backgrounds from "@/helpers/backgrounds.json";
+import musicList from "@/helpers/music.json";
 import titles from "@/helpers/titles";
 import { useState } from "react";
 
 export default function PostcardForm({
   imagePath,
+  params,
   onBack,
   onNext,
 }: {
   imagePath: string;
+  params?: any;
   onBack: () => void;
   onNext: (params: any) => void;
 }) {
-  const [title, setTitle] = useState("Hi!");
-  const [text, setText] = useState("");
-  const [recipient, setRecipient] = useState({
-    name: "",
-    email: "",
+  const [cardParams, setCardParams] = useState<CardParameters>({
+    title: params.title ?? "Hi!",
+    text: params.text ?? "",
+    music: params.music ?? "",
+    background: params.background ?? "",
+    recipient: {
+      name: params.recipient.name ?? "",
+      email: params.recipient.email ?? "",
+    },
+    sender: {
+      name: params.sender.name ?? "",
+      email: params.sender.email ?? "",
+    },
   });
-  const [sender, setSender] = useState({ name: "", email: "" });
+
+  const updateCardParams = (property: string, value: any) => {
+    setCardParams((prevCardParams) => ({
+      ...prevCardParams,
+      [property]: value,
+    }));
+  };
 
   return (
     <div>
@@ -36,8 +58,8 @@ export default function PostcardForm({
               <Image src={"/book.gif"} alt="book" height={40} width={28} />
               <select
                 className="bg-white border border-1 border-heavyBlue h-fit text-sm text-heavyBlue pl-1"
-                value={title}
-                onChange={(e) => setTitle(e.target.value)}
+                value={cardParams.title}
+                onChange={(e) => updateCardParams("title", e.target.value)}
                 name="subj"
               >
                 {titles.eng.map((o) => (
@@ -48,8 +70,8 @@ export default function PostcardForm({
               </select>
             </div>
             <textarea
-              value={text}
-              onChange={(e) => setText(e.target.value)}
+              value={cardParams.text}
+              onChange={(e) => updateCardParams("text", e.target.value)}
               rows={9}
               cols={40}
               className="bg-white border border-1 border-heavyBlue"
@@ -64,77 +86,53 @@ export default function PostcardForm({
               width={251}
               className="self-end"
             />
-            <div className=" flex flex-col text-mainBlue gap-1">
-              <p>To</p>
-              <div className="flex self-end">
-                <label className="w-14">Name:</label>
-                <input
-                  required
-                  size={20}
-                  className="border border-1 border-heavyBlue"
-                  value={recipient.name}
-                  onChange={(e) =>
-                    setRecipient({
-                      ...recipient,
-                      name: e.target.value,
-                    })
-                  }
-                ></input>
-              </div>
-              <div className="flex self-end">
-                <label className="w-14">email:</label>
-                <input
-                  type="email"
-                  required
-                  size={20}
-                  className="border border-1 border-heavyBlue"
-                  value={recipient.email}
-                  onChange={(e) =>
-                    setRecipient({
-                      ...recipient,
-                      email: e.target.value,
-                    })
-                  }
-                ></input>
-              </div>
-            </div>
+            <AddressFields
+              label="To"
+              person={cardParams.recipient}
+              updateValue={(v: Person) => updateCardParams("recipient", v)}
+            />
+
             <HSeparator />
-            <div className=" flex flex-col text-mainBlue gap-1">
-              <p>From</p>
-              <div className="flex self-end">
-                <label className="w-14">Name:</label>
-                <input
-                  required
-                  size={20}
-                  className="border border-1 border-heavyBlue"
-                  value={sender.name}
-                  onChange={(e) =>
-                    setSender({
-                      ...sender,
-                      name: e.target.value,
-                    })
-                  }
-                ></input>
-              </div>
-              <div className="flex self-end">
-                <label className="w-14">email:</label>
-                <input
-                  required
-                  size={20}
-                  className="border border-1 border-heavyBlue"
-                  value={sender.email}
-                  onChange={(e) =>
-                    setSender({
-                      ...sender,
-                      email: e.target.value,
-                    })
-                  }
-                ></input>
-              </div>
-            </div>
+            <AddressFields
+              label="From"
+              person={cardParams.sender}
+              updateValue={(v: Person) => updateCardParams("sender", v)}
+            />
           </div>
         </div>
       </Wrapper>
+      <div className="flex flex-col border border-1 border-heavyBlue p-2 mt-10">
+        <p className="text-mainBlue">
+          You can customize the following settings to your liking:
+        </p>
+        <Select
+          name="background"
+          className="my-2"
+          value={cardParams.background}
+          onChange={(e) => updateCardParams("background", e.target.value)}
+        >
+          {backgrounds.map((item, idx) => (
+            <option
+              key={`${idx}-${item.fileName}`}
+              className="text-sm text-mainBlue"
+            >
+              {item.eng}
+            </option>
+          ))}
+        </Select>
+        {/* <Select
+          name="music"
+          className="my-10"
+          value={cardParams.music}
+          onChange={(e) => updateCardParams("music", e.target.value)}
+        >
+          {musicList.map((item) => (
+            <option key={item.fileName} className="text-sm text-mainBlue">
+              {item.rusName}
+            </option>
+          ))}
+        </Select> */}
+      </div>
       <div className="flex justify-between w-full mt-4">
         <input
           type="button"
@@ -145,7 +143,7 @@ export default function PostcardForm({
         <button
           type="submit"
           className="border-2 border-mainBlue px-1"
-          onClick={() => onNext({ title, text, sender, recipient })}
+          onClick={() => onNext(cardParams)}
         >
           Next
         </button>

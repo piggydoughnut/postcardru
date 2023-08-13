@@ -1,6 +1,7 @@
 "use client";
 
 import { Arrow } from "./Icons";
+import Image from "next/image";
 import Link from "next/link";
 
 export default function TopNavigation({
@@ -15,9 +16,9 @@ export default function TopNavigation({
           <Arrow className="rotate-180" />
         </button>
       </a>
-      <p className="text-mainBlue text-md">{title}</p>
-      <Link className="text-paleBlue" href="/" replace={true} prefetch={true}>
-        Home
+      <p className="text-mainBlue text-lg">{title}</p>
+      <Link href="/" replace={true} prefetch={true}>
+        <Image src="/arr-top.gif" alt="arr-top" width={24} height={24} />
       </Link>
     </div>
   );
