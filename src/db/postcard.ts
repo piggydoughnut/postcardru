@@ -23,7 +23,7 @@ const Postcard: Model<Document & Card> =
       imagePath: { type: String, required: true },
       text: { type: String, required: true },
       title: { type: String, required: true },
-      music: { type: String, required: true },
+      music: { type: String, required: false },
       sender: {
         name: { type: String, required: true },
         email: { type: String, required: true },
