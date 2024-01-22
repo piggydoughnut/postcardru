@@ -36,7 +36,6 @@ export default async function Page({
         {!!result && (
           <ImageMesh
             images={result?.files}
-            category={params.categoryId}
             subcategory={params.subcategoryId}
           />
         )}

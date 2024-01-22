@@ -102,7 +102,7 @@ export default function Page({
       <div
         className="h-full bg-repeat"
         style={{
-          backgroundImage: backgroundUrl ?? null,
+          backgroundImage: backgroundUrl ?? "",
         }}
       >
         <div className="flex flex-col justify-center items-center mt-4 max-w-[600px] mx-auto mb-10">

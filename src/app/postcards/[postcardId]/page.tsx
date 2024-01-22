@@ -41,7 +41,7 @@ export default function Page({ params }: { params: { postcardId: string } }) {
       <div
         className="flex flex-col justify-center items-center mt-4 mx-auto h-full bg-repeat"
         style={{
-          backgroundImage: backgroundUrl ?? null,
+          backgroundImage: backgroundUrl ?? "",
         }}
       >
         {cardParams ? (

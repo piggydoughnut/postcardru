@@ -32,9 +32,7 @@ export default async function Page({
             <H4 className="italic text-paleBlue mt-20 mr-6">forward</H4>
           </button> */}
         </div>
-        {!!result && (
-          <ImageMesh images={result?.files} category={params.categoryId} />
-        )}
+        {!!result && <ImageMesh images={result?.files} />}
       </div>
       {result && !subcategoriesExist && (
         <Pagination

@@ -33,7 +33,7 @@ export default function PostcardPreview({
     <div>
       <Wrapper>
         <Image
-          src={cardParams.imagePath}
+          src={cardParams.imagePath ?? ""}
           height={300}
           width={400}
           alt={cardParams.title}
