@@ -4,6 +4,7 @@ const HSeparator = () => (
 );
 
 import { CardParameters, Person } from "@/helpers/types";
+import { useEffect, useState } from "react";
 
 import AddressFields from "./AddressFields";
 import Image from "next/image";
@@ -12,7 +13,6 @@ import { Wrapper } from "./Wrapper";
 import backgrounds from "@/helpers/backgrounds.json";
 import musicList from "@/helpers/music.json";
 import titles from "@/helpers/titles";
-import { useState } from "react";
 
 export default function PostcardForm({
   imagePath,
@@ -25,6 +25,8 @@ export default function PostcardForm({
   onBack: () => void;
   onNext: (params: any) => void;
 }) {
+  const [chosenSongName, setChosenSongName] = useState("no music");
+  const [chosenBackground, setChosenBackground] = useState("");
   const [cardParams, setCardParams] = useState<CardParameters>({
     title: params.title ?? "Hi!",
     text: params.text ?? "",
@@ -46,6 +48,23 @@ export default function PostcardForm({
       [property]: value,
     }));
   };
+
+  useEffect(() => {
+    if (chosenSongName) {
+      const fileName = musicList.find((item) => item.rusName == chosenSongName);
+      updateCardParams("music", fileName?.fileName);
+    }
+  }, [chosenSongName]);
+
+  useEffect(() => {
+    if (chosenBackground) {
+      updateCardParams(
+        "background",
+        backgrounds.find((item) => item.eng === chosenBackground)?.fileName ??
+          ""
+      );
+    }
+  }, [chosenBackground]);
 
   return (
     <div>
@@ -108,8 +127,8 @@ export default function PostcardForm({
         <Select
           name="background"
           className="my-2"
-          value={cardParams.background}
-          onChange={(e) => updateCardParams("background", e.target.value)}
+          value={chosenBackground}
+          onChange={(e) => setChosenBackground(e.target.value)}
         >
           {backgrounds.map((item, idx) => (
             <option
@@ -120,18 +139,18 @@ export default function PostcardForm({
             </option>
           ))}
         </Select>
-        {/* <Select
+        <Select
           name="music"
           className="my-10"
-          value={cardParams.music}
-          onChange={(e) => updateCardParams("music", e.target.value)}
+          value={chosenSongName}
+          onChange={(e) => setChosenSongName(e.target.value)}
         >
           {musicList.map((item) => (
             <option key={item.fileName} className="text-sm text-mainBlue">
               {item.rusName}
             </option>
           ))}
-        </Select> */}
+        </Select>
       </div>
       <div className="flex justify-between w-full mt-4">
         <input

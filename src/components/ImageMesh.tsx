@@ -4,11 +4,9 @@ import { PostcardFile } from "@/helpers/file";
 
 export default function ImageMesh({
   images,
-  category,
   subcategory,
 }: {
   images: PostcardFile[];
-  category: string;
   subcategory?: string;
 }) {
   return (

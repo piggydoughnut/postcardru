@@ -5,46 +5,30 @@ const HSeparator = ({ className }: { className?: string }) => (
   ></div>
 );
 
+import AudioPlayer from "./AudioPlayer";
+import { CardParameters } from "@/helpers/types";
 import Image from "next/image";
+import { PostcardStates } from "@/helpers/consts";
 import { Wrapper } from "./Wrapper";
-
-type Person = {
-  email: string;
-  name: string;
-};
+import { getMusicPath } from "@/helpers/general";
+import { useMemo } from "react";
 
 export default function PostcardPreview({
   cardParams,
-  mode = "preview",
+  mode = PostcardStates.preview,
 }: {
-  cardParams: {
-    imagePath: string;
-    text: string;
-    title: string;
-    sender: Person;
-    recipient: Person;
-    music: string;
-    background: string;
-    musicFileName: string;
-  };
+  cardParams: CardParameters;
   mode?: string;
 }) {
-  // @todo
-  // const musicUrl = useMemo(
-  //   () => `http://localhost:3000/music/${cardParams.musicFileName}`,
-  //   [cardParams.musicFileName]
-  // );
-  // useEffect(() => {
-  //   MIDI.loadPlugin(() => console.log("loaded"));
-  //   MIDI.Player.loadFile(musicUrl, () => {
-  //     console.log("success");
-  //     MIDI.Player.start();
-  //   }); // load .MIDI from base64 or binary XML request.
-  // }, [musicUrl]);
+  const musicUrl = useMemo(
+    () => getMusicPath(cardParams.music),
+    [cardParams.music]
+  );
 
   if (!Object.keys(cardParams).length) {
     return <></>;
   }
+
   return (
     <div>
       <Wrapper>
@@ -52,8 +36,12 @@ export default function PostcardPreview({
           src={cardParams.imagePath}
           height={300}
           width={400}
-          alt={cardParams.imagePath}
+          alt={cardParams.title}
         />
+        <div className="my-4">
+          <p>Your card comes with audio</p>
+          <AudioPlayer src={musicUrl} />
+        </div>
         <HSeparator />
         <div className="grid grid-cols-2 px-2 w-full">
           <div className="mt-2 border-r-[0.5px] border-heavyBlue pr-2">

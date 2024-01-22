@@ -1,6 +1,7 @@
 "use client";
 
 import { H1, H2 } from "@/components/Text";
+import { PostcardStates, Titles } from "@/helpers/consts";
 
 import { CardParameters } from "@/helpers/types";
 import PostcardForm from "@/components/PostcardForm";
@@ -8,27 +9,10 @@ import PostcardPreview from "@/components/PostcardPreview";
 import React from "react";
 import TopNavigation from "@/components/TopNavigation";
 import { Wrapper } from "@/components/Wrapper";
-import backgrounds from "@/helpers/backgrounds.json";
-import musicList from "@/helpers/music.json";
 import path from "path";
 import { sendEmail } from "@/helpers/email";
 import { sendPostcardApi } from "@/helpers/api";
 import { useState } from "react";
-
-const PostcardStates = {
-  new: "new",
-  preview: "preview",
-  sending: "sending",
-  sent: "sent",
-  error: "error",
-} as const;
-
-const Titles: Record<string, string> = {
-  [PostcardStates.new]: "Compose the card",
-  [PostcardStates.preview]: "Preview the card",
-  [PostcardStates.sending]: "Sending",
-  [PostcardStates.sent]: "Your card has been sent",
-};
 
 export default function Page({
   params,
@@ -45,26 +29,19 @@ export default function Page({
   const [postCardState, setPostCardState] = useState<string>(
     PostcardStates.new
   );
-  const [cardParams, setCardParams] = useState<
-    CardParameters & {
-      backgroundFileName: string;
-      musicFileName: string;
-    }
-  >({
-    title: params.title ?? "Hi!",
-    text: params.text ?? "",
-    music: params.music ?? "",
-    background: params.background ?? "",
+  const [cardParams, setCardParams] = useState<CardParameters>({
+    title: "Hi!",
+    text: "",
+    music: "",
+    background: "",
     recipient: {
-      name: params.recipient?.name ?? "",
-      email: params.recipient?.email ?? "",
+      name: "",
+      email: "",
     },
     sender: {
-      name: params.sender?.name ?? "",
-      email: params.sender?.email ?? "",
+      name: "",
+      email: "",
     },
-    backgroundFileName: "",
-    musicFileName: "",
   });
   const [postcardId, setPostcardId] = useState("");
   const [error, setError] = useState<string | null>(null);
@@ -80,15 +57,13 @@ export default function Page({
     [searchParams]
   );
 
-  const backgroundUrl = React.useMemo(
-    () =>
-      `url(/backgrounds/${
-        postCardState === PostcardStates.preview
-          ? cardParams.backgroundFileName
-          : ""
-      })`,
-    [cardParams.backgroundFileName, postCardState]
-  );
+  const backgroundUrl = React.useMemo(() => {
+    if (cardParams.background) {
+      return `url(/backgrounds/${
+        postCardState === PostcardStates.preview ? cardParams.background : ""
+      })`;
+    }
+  }, [cardParams.background, postCardState]);
 
   const sendPostcard = async () => {
     try {
@@ -115,16 +90,10 @@ export default function Page({
   };
 
   const onNextStep = (params: CardParameters) => {
-    setCardParams({
-      ...params,
-      musicFileName:
-        musicList.find((val) => val.rusName === params.music)?.fileName ?? "",
-      backgroundFileName:
-        backgrounds.find((item) => item.eng === params.background)?.fileName ??
-        "",
-    });
+    setCardParams(params);
     setPostCardState(PostcardStates.preview);
   };
+
   return (
     <div>
       <div className="flex flex-col justify-center items-center mt-4 max-w-[600px] mx-auto mb-2">

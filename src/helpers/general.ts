@@ -24,3 +24,7 @@ export const addSearchParametersAndRefresh = (searchParams: any) => {
   // Set the modified URL and trigger a page refresh
   window.location.href = currentUrl.href;
 };
+
+export const getMusicPath = (fileName: string) => {
+  return `https://postcardmusic.s3.us-east-2.amazonaws.com/${fileName}`;
+};

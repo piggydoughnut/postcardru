@@ -10,4 +10,5 @@ export type CardParameters = {
   background: string;
   recipient: Person;
   sender: Person;
+  imagePath?: string;
 };

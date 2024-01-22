@@ -15,6 +15,7 @@ export async function POST(request: Request) {
       text: body.text,
       title: body.title,
       music: body.music,
+      background: body.background,
       sender: {
         name: validator.escape(body.sender.name),
         email: validator.normalizeEmail(body.sender.email),
