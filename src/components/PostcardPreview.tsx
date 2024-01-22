@@ -38,10 +38,12 @@ export default function PostcardPreview({
           width={400}
           alt={cardParams.title}
         />
-        <div className="my-4">
-          <p>Your card comes with audio</p>
-          <AudioPlayer src={musicUrl} />
-        </div>
+        {!!cardParams.music && (
+          <div className="my-4">
+            <p>Your card comes with audio</p>
+            <AudioPlayer src={musicUrl} />
+          </div>
+        )}
         <HSeparator />
         <div className="grid grid-cols-2 px-2 w-full">
           <div className="mt-2 border-r-[0.5px] border-heavyBlue pr-2">
@@ -66,18 +68,16 @@ export default function PostcardPreview({
                   <p>{cardParams.recipient.email}</p>
                 </div>
               </div>
-              {mode === "preview" && (
-                <div>
-                  <HSeparator className="w-[200px]" />
-                  <div className=" flex flex-col gap-1">
-                    <p className="ml-[-18px] text-mainBlue">From:</p>
-                    <div className="flex self-end flex-col gap-2">
-                      <p>{cardParams.sender.name}</p>
-                      <p>{cardParams.sender.email}</p>
-                    </div>
+              <div>
+                <HSeparator className="w-[200px]" />
+                <div className=" flex flex-col gap-1">
+                  <p className="ml-[-18px] text-mainBlue">From:</p>
+                  <div className="flex self-end flex-col gap-2">
+                    <p>{cardParams.sender.name}</p>
+                    <p>{cardParams.sender.email}</p>
                   </div>
                 </div>
-              )}
+              </div>
             </div>
           </div>
         </div>

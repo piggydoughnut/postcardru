@@ -12,6 +12,7 @@ import { Select } from "./Select";
 import { Wrapper } from "./Wrapper";
 import backgrounds from "@/helpers/backgrounds.json";
 import musicList from "@/helpers/music.json";
+import { postcardFormValidationSchema } from "@/helpers/validation";
 import titles from "@/helpers/titles";
 
 export default function PostcardForm({
@@ -27,6 +28,7 @@ export default function PostcardForm({
 }) {
   const [chosenSongName, setChosenSongName] = useState("no music");
   const [chosenBackground, setChosenBackground] = useState("");
+  const [errors, setErrors] = useState<Array<string>>([]);
   const [cardParams, setCardParams] = useState<CardParameters>({
     title: params.title ?? "Hi!",
     text: params.text ?? "",
@@ -152,6 +154,15 @@ export default function PostcardForm({
           ))}
         </Select>
       </div>
+      <div className="h-10  flex gap-x-3 flex-wrap">
+        {!!errors.length && (
+          <p className="text-red-500 "> {errors.length} errors: </p>
+        )}
+        {errors.map((e) => (
+          <p key={e}>{e}</p>
+        ))}
+      </div>
+
       <div className="flex justify-between w-full mt-4">
         <input
           type="button"
@@ -162,7 +173,19 @@ export default function PostcardForm({
         <button
           type="submit"
           className="border-2 border-mainBlue px-1"
-          onClick={() => onNext(cardParams)}
+          onClick={() => {
+            console.log(cardParams);
+            postcardFormValidationSchema
+              .validate(cardParams, { abortEarly: false })
+              .then((valid) => {
+                console.log("Form is valid:", valid);
+                onNext(cardParams);
+              })
+              .catch((errors) => {
+                setErrors(errors.errors);
+                console.error("Validation errors:", errors.errors);
+              });
+          }}
         >
           Next
         </button>
