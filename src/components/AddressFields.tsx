@@ -11,14 +11,14 @@ export const AddressFields = ({
   person: Person;
   updateValue: (v: Person) => void;
 }) => (
-  <div className=" flex flex-col text-mainBlue gap-1">
+  <div className=" flex flex-col text-mainBlue gap-1 text-[18px] sm:text-[16px]">
     <p>{label}</p>
-    <div className="flex self-end">
+    <div className="flex flex-col sm:flex-row sm:self-end">
       <label className="w-14">Name:</label>
       <input
         required
         size={20}
-        className="border border-1 border-heavyBlue"
+        className="border border-1 border-heavyBlue w-full sm:w-auto"
         value={person.name}
         onChange={(e) =>
           updateValue({
@@ -28,13 +28,13 @@ export const AddressFields = ({
         }
       ></input>
     </div>
-    <div className="flex self-end">
-      <label className="w-14">email:</label>
+    <div className="flex flex-col sm:flex-row sm:self-end">
+      <label className="sm:w-14">email:</label>
       <input
         type="email"
         required
         size={20}
-        className="border border-1 border-heavyBlue"
+        className="border border-1 border-heavyBlue w-full sm:w-auto"
         value={person.email}
         onChange={(e) =>
           updateValue({

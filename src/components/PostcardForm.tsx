@@ -28,6 +28,20 @@ export default function PostcardForm({
 }) {
   const [chosenSongName, setChosenSongName] = useState("no music");
   const [chosenBackground, setChosenBackground] = useState("");
+  useEffect(() => {
+    if (params.music) {
+      setChosenSongName(
+        musicList.find((item) => item.fileName == params.music)?.rusName ??
+          "no music"
+      );
+    }
+    if (params.background) {
+      setChosenBackground(
+        backgrounds.find((item) => item.fileName === params.background)?.eng ??
+          ""
+      );
+    }
+  }, []);
   const [errors, setErrors] = useState<Array<string>>([]);
   const [cardParams, setCardParams] = useState<CardParameters>({
     title: params.title ?? "Hi!",
@@ -73,7 +87,7 @@ export default function PostcardForm({
       <Wrapper>
         <Image src={imagePath} height={300} width={400} alt={imagePath} />
         <HSeparator />
-        <div className="flex gap-2">
+        <div className="flex flex-col sm:flex-row gap-2">
           <div className="mt-8">
             <div className="flex gap-2 items-end ml-8 mb-1">
               <Image src={"/book.gif"} alt="book" height={40} width={28} />
@@ -122,13 +136,13 @@ export default function PostcardForm({
           </div>
         </div>
       </Wrapper>
-      <div className="flex flex-col border border-1 border-heavyBlue p-2 mt-10">
+      <div className="flex flex-col border border-1 border-heavyBlue p-2 mt-10 text-[18px] sm:text-[16px]">
         <p className="text-mainBlue">
           You can customize the following settings to your liking:
         </p>
         <Select
           name="background"
-          className="my-2"
+          className="my-2 text-[18px] sm:text-[16px]"
           value={chosenBackground}
           onChange={(e) => setChosenBackground(e.target.value)}
         >
@@ -143,7 +157,7 @@ export default function PostcardForm({
         </Select>
         <Select
           name="music"
-          className="my-10"
+          className="my-10 text-[18px] sm:text-[16px] w-full sm:w-auto"
           value={chosenSongName}
           onChange={(e) => setChosenSongName(e.target.value)}
         >
@@ -154,7 +168,7 @@ export default function PostcardForm({
           ))}
         </Select>
       </div>
-      <div className="h-10  flex gap-x-3 flex-wrap">
+      <div className="h-14 sm:h-10  flex gap-x-3 flex-wrap">
         {!!errors.length && (
           <p className="text-red-500 "> {errors.length} errors: </p>
         )}
@@ -163,18 +177,17 @@ export default function PostcardForm({
         ))}
       </div>
 
-      <div className="flex justify-between w-full mt-4">
+      <div className="flex  justify-evenly sm:justify-between w-full mt-4">
         <input
           type="button"
-          className="border-2 border-mainBlue px-1"
+          className="border-2 border-mainBlue px-1  text-[18px] sm:text-[16px] "
           value="Back"
           onClick={onBack}
         ></input>
         <button
           type="submit"
-          className="border-2 border-mainBlue px-1"
+          className="border-2 border-mainBlue px-1  text-[20px] sm:text-[16px] "
           onClick={() => {
-            console.log(cardParams);
             postcardFormValidationSchema
               .validate(cardParams, { abortEarly: false })
               .then((valid) => {

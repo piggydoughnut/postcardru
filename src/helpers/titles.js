@@ -3,7 +3,7 @@ const titles = {
     "Hi!",
     "Happy birthday!",
     "Happy New Year!",
-    "С праздником!",
+    "Happy holiday!",
     "How're you doing?",
     "Congratulations!",
     "For no reason",
@@ -17,7 +17,7 @@ const titles = {
     "I love you!",
     "Marry me",
     "Come back",
-    "Your text",
+    // "Your text",
   ],
   rus: [
     "Привет!",
@@ -39,7 +39,7 @@ const titles = {
     "Я тебя люблю!",
     "Давай поженимся",
     "Вернись!",
-    "Твой текст",
+    // "Твой текст",
   ],
 };
 

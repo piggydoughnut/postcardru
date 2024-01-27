@@ -1,3 +1,4 @@
+import { Background } from "@/components/Background";
 import { H1 } from "../components/Text";
 import Image from "next/image";
 import { RetrieveCard } from "@/components/RetrieveCard";
@@ -13,11 +14,8 @@ type CategoryItem = {
 export default function Home() {
   return (
     <div className="bg-white ">
-      <main
-        className="flex min-h-[570px] flex-col bg-white bg-no-repeat bg-top-4"
-        style={{ backgroundImage: "url(/bg.svg)" }}
-      >
-        <div>
+      <main className="flex flex-col bg-white ">
+        <Background>
           <H1 className="text-center ">Greeting Postcards</H1>
           <div className="mt-28 flex flex-col max-w-[600px] mx-auto">
             <div className="-mt-2">
@@ -62,7 +60,7 @@ export default function Home() {
               ></Image>
             </a>
           </div>
-        </div>
+        </Background>
       </main>
       <div className="mt-10">
         <div className="flex flex-col max-w-[700px] mx-auto flex-wrap stamp-border">

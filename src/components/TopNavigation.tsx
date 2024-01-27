@@ -1,8 +1,6 @@
 "use client";
 
 import { Arrow } from "./Icons";
-import Image from "next/image";
-import Link from "next/link";
 
 export default function TopNavigation({
   title = "Compose the postcard",
@@ -10,16 +8,16 @@ export default function TopNavigation({
   title?: string;
 }) {
   return (
-    <div className="flex flex-row justify-between w-full">
+    <div className="flex flex-row justify-between w-full px-4 pt-4 sm:p-0">
       <a href="">
         <button onClick={() => history.back()}>
-          <Arrow className="rotate-180" />
+          <Arrow className="rotate-180 w-10 h-10 sm:w-6 sm:h-6" />
         </button>
       </a>
       <p className="text-mainBlue text-lg">{title}</p>
-      <Link href="/" replace={true} prefetch={true}>
-        <Image src="/arr-top.gif" alt="arr-top" width={24} height={24} />
-      </Link>
+      <a href="/">
+        <Arrow className="-rotate-90 w-10 h-10 sm:w-6 sm:h-6" />
+      </a>
     </div>
   );
 }

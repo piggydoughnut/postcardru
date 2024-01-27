@@ -44,34 +44,23 @@ export default function Pagination({
           currentPage > 1 ? "hover:cursor-pointer" : "hover:cursor-default"
         } `}
       >
-        <Arrow className="rotate-180" />
+        <Arrow className="rotate-180 w-10 h-10 sm:w-6 sm:h-6" />
       </button>
-      <div className="flex gap-1">
+      <div className="flex sm:gap-1 max-w-[300px] flex-wrap gap-2">
         {pagination.map((p) => {
           const amIChosen = currentPage === p;
           return (
-            <div
-              className={`rounded-full w-6 h-6 border border-1 ${
-                amIChosen ? "border-heavyBlue" : "border-purpleBlue"
+            <button
+              onClick={() => handleChoosingPage(p, pages)}
+              className={`rounded-full w-10 h-10 sm:w-6 sm:h-6 border border-1 ${
+                amIChosen
+                  ? "border-heavyBlue text-heavyBlue blur-0"
+                  : "border-purpleBlue text-purpleBlue blur-0"
               }  flex justify-center items-center shadow-md blur-xs`}
               key={p}
             >
-              {amIChosen ? (
-                <button
-                  onClick={() => handleChoosingPage(p, pages)}
-                  className="text-heavyBlue blur-0"
-                >
-                  {p}
-                </button>
-              ) : (
-                <button
-                  onClick={() => handleChoosingPage(p, pages)}
-                  className="text-purpleBlue blur-0"
-                >
-                  {p}
-                </button>
-              )}
-            </div>
+              {p}
+            </button>
           );
         })}
       </div>
@@ -86,7 +75,7 @@ export default function Pagination({
           currentPage != pages ? "hover:cursor-pointer" : "hover:cursor-default"
         } `}
       >
-        <Arrow />
+        <Arrow className="w-10 h-10 sm:w-6 sm:h-6" />
       </button>
     </div>
   );

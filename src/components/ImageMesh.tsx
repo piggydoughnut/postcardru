@@ -10,16 +10,22 @@ export default function ImageMesh({
   subcategory?: string;
 }) {
   return (
-    <div className="flex gap-2 flex-wrap justify-center min-w-[750px]">
+    <div className="flex gap-2 flex-wrap justify-center sm:min-w-[750px] mt-10 sm:mt-0 pb-4">
       {images?.map((f) => {
         return (
-          <div key={f.fileName} className="w-1/4 flex justify-center">
+          <div key={f.fileName} className="sm:w-1/4 flex justify-center">
             <a
               href={f.imagePath}
               className="small-stamp-border w-fit flex flex-col items-center justify-center text-mainBlue bg-white"
             >
-              <div className="">
-                <Image src={f.path} alt={f.fileName} width={100} height={100} />
+              <div className="flex flex-col justify-center items-center">
+                <Image
+                  src={f.path}
+                  alt={f.fileName}
+                  width={100}
+                  height={100}
+                  className="h-[150px] sm:w-[100px] w-[150px] sm:h-[100px]"
+                />
                 {f?.categoryName && !subcategory && (
                   <H3 className="text-center">{f.categoryName}</H3>
                 )}

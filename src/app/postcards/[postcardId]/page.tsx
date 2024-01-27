@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 
+import { Button } from "@/components/Button";
 import { CardParameters } from "@/helpers/types";
 import { H2 } from "@/components/Text";
 import PostcardPreview from "@/components/PostcardPreview";
@@ -24,7 +25,8 @@ export default function Page({ params }: { params: { postcardId: string } }) {
       })
       .then((body) => {
         setCardParams(body);
-      });
+      })
+      .catch((e) => console.log(e));
   }, [params]);
 
   const backgroundUrl = React.useMemo(() => {
@@ -52,7 +54,7 @@ export default function Page({ params }: { params: { postcardId: string } }) {
             />
           </div>
         ) : (
-          <Wrapper className="flex pt-20 text-center min-w-[600px]">
+          <Wrapper className="flex pt-20 text-center w-full sm:min-w-[600px]">
             <div>
               {!error && (
                 <div className="flex flex-row gap-4 items-baseline">
@@ -71,13 +73,7 @@ export default function Page({ params }: { params: { postcardId: string } }) {
           </Wrapper>
         )}
       </div>
-      {cardParams && (
-        <div className="my-6 flex justify-center items-center">
-          <a href="/" className="border-2 border-mainBlue px-1">
-            Reply with a postcard
-          </a>
-        </div>
-      )}
+      {cardParams && <Button title="Reply with a postcard" link="/" />}
     </div>
   );
 }
