@@ -3,8 +3,8 @@ import "../../styles/globals.css";
 import { GoogleAnalytics } from "@next/third-parties/google";
 
 export const metadata = {
-  title: "Postcardru.com",
-  description: "Main",
+  title: "PostcardRu.com",
+  description: "Virtual Postcards from the 90s",
 };
 
 export default function RootLayout({
