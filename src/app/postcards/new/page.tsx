@@ -102,7 +102,7 @@ export default function Page({
       <div
         className="h-full bg-repeat"
         style={{
-          backgroundImage: backgroundUrl ?? "",
+          backgroundImage: backgroundUrl ?? "none",
         }}
       >
         <div className="flex flex-col justify-center items-center mt-4 max-w-[600px] mx-auto mb-10">
@@ -131,13 +131,11 @@ export default function Page({
             <Wrapper className="flex pt-20 text-center">
               <div className="text-mainBlue">
                 <H1>Postcard sent</H1>
-                <p>
-                  You can preview your sent postcard here: <br />
-                  <a
-                    className="underline hover:text-blue-600"
-                    href={`${window.location.origin}/postcards/${postcardId}`}
-                  >{`${window.location.origin}/postcards/${postcardId}`}</a>
-                </p>
+                <p>You can preview your sent postcard here:</p> <br />
+                <a
+                  className="underline hover:text-blue-600"
+                  href={`${window.location.origin}/postcards/${postcardId}`}
+                >{`${window.location.origin}/postcards/${postcardId}`}</a>
               </div>
             </Wrapper>
           )}
@@ -155,7 +153,7 @@ export default function Page({
             className="border-2 border-mainBlue px-1"
             value="Back"
             onClick={() => setPostCardState(PostcardStates.new)}
-          ></input>
+          />
           <button
             type="submit"
             className="border-2 border-mainBlue px-1"

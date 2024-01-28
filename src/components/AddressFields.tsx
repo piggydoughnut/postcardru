@@ -20,13 +20,14 @@ export const AddressFields = ({
         size={20}
         className="border border-1 border-heavyBlue w-full sm:w-auto"
         value={person.name}
-        onChange={(e) =>
+        onChange={(e) => {
+          e.preventDefault();
           updateValue({
             ...person,
             name: e.target.value.toString(),
-          })
-        }
-      ></input>
+          });
+        }}
+      />
     </div>
     <div className="flex flex-col sm:flex-row sm:self-end">
       <label className="sm:w-14">email:</label>
@@ -36,13 +37,14 @@ export const AddressFields = ({
         size={20}
         className="border border-1 border-heavyBlue w-full sm:w-auto"
         value={person.email}
-        onChange={(e) =>
+        onChange={(e) => {
+          e.preventDefault();
           updateValue({
             ...person,
             email: e.target.value.toString(),
-          })
-        }
-      ></input>
+          });
+        }}
+      />
     </div>
   </div>
 );

@@ -1,5 +1,5 @@
 import { Background } from "@/components/Background";
-import { H1 } from "../components/Text";
+import { H1 } from "@/components/Text";
 import Image from "next/image";
 import { RetrieveCard } from "@/components/RetrieveCard";
 import categories from "@/helpers/categories.json";

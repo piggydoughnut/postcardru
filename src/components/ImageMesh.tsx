@@ -13,7 +13,10 @@ export default function ImageMesh({
     <div className="flex gap-2 flex-wrap justify-center sm:min-w-[750px] mt-10 sm:mt-0 pb-4">
       {images?.map((f) => {
         return (
-          <div key={f.fileName} className="sm:w-1/4 flex justify-center">
+          <div
+            key={f.fileName + f.categoryName}
+            className="sm:w-1/4 flex justify-center"
+          >
             <a
               href={f.imagePath}
               className="small-stamp-border w-fit flex flex-col items-center justify-center text-mainBlue bg-white"
