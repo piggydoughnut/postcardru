@@ -6,7 +6,9 @@ export const Wrapper = ({
   className?: string;
 }) => (
   <div
-    className={`flex flex-col border border-1 border-heavyBlue mx-auto py-2 px-4 items-center bg-white bg-no-repeat bg-contain min-h-[600px] ${className}`}
+    className={`flex flex-col border border-1 border-heavyBlue mx-auto py-2 px-4 items-center bg-white bg-no-repeat bg-contain min-h-[600px] ${
+      className ? className : ""
+    }`}
     style={{ backgroundImage: "url(/decoration.svg)" }}
   >
     {children}
