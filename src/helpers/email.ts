@@ -14,7 +14,7 @@ export const sendEmail = async (email: string, postcardUrl: string) => {
   const data = {
     from: "PostcardRu  <hello@postcardru.com>",
     to: email,
-    subject: "You have received a postcaard",
+    subject: "You received a postcaard",
     html: `Hello! <br/><br/>
 You've got a postcard. To view this postcard, click on the
 following link at anytime within the next 365 days

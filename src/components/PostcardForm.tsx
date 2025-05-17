@@ -41,7 +41,7 @@ export default function PostcardForm({
           ""
       );
     }
-  }, []);
+  }, [params.background, params.music]);
   const [errors, setErrors] = useState<Array<string>>([]);
   const [cardParams, setCardParams] = useState<CardParameters>({
     title: params.title ?? "Hi!",
