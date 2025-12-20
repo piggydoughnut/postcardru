@@ -9,10 +9,8 @@ import PostcardPreview from "@/components/PostcardPreview";
 import React from "react";
 import TopNavigation from "@/components/TopNavigation";
 import { Wrapper } from "@/components/Wrapper";
-import path from "path";
-import { sendEmail } from "@/helpers/email";
 import { sendPostcardApi } from "@/helpers/api";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 export default function Page({
   params,
@@ -45,17 +43,22 @@ export default function Page({
   });
   const [postcardId, setPostcardId] = useState("");
   const [error, setError] = useState<string | null>(null);
+  const [baseUrl, setBaseUrl] = useState<string>("");
 
-  const imagePath = React.useMemo(
-    () =>
-      path.resolve(
-        "/postcardimages",
-        searchParams.categoryId,
-        !!searchParams.subcategoryId ? searchParams.subcategoryId : "",
-        searchParams.fileName
-      ),
-    [searchParams]
-  );
+  // Set base URL on client side only
+  useEffect(() => {
+    setBaseUrl(window.location.origin);
+  }, []);
+
+  const imagePath = React.useMemo(() => {
+    const parts = [
+      "/postcardimages",
+      searchParams.categoryId,
+      searchParams.subcategoryId || "",
+      searchParams.fileName,
+    ].filter(Boolean);
+    return parts.join("/");
+  }, [searchParams]);
 
   const backgroundUrl = React.useMemo(() => {
     if (cardParams.background) {
@@ -74,10 +77,6 @@ export default function Page({
       });
       if (response.status === 200) {
         const body = await response.json();
-        await sendEmail(
-          cardParams.recipient.email,
-          `${window.location.origin}/postcards/${body.id}`
-        );
         setPostCardState(PostcardStates.sent);
         setPostcardId(body.id ?? null);
       } else {
@@ -132,10 +131,12 @@ export default function Page({
               <div className="text-mainBlue">
                 <H1>Postcard sent</H1>
                 <p>You can preview your sent postcard here:</p> <br />
-                <a
-                  className="underline hover:text-blue-600"
-                  href={`${window.location.origin}/postcards/${postcardId}`}
-                >{`${window.location.origin}/postcards/${postcardId}`}</a>
+                {baseUrl && (
+                  <a
+                    className="underline hover:text-blue-600"
+                    href={`${baseUrl}/postcards/${postcardId}`}
+                  >{`${baseUrl}/postcards/${postcardId}`}</a>
+                )}
               </div>
             </Wrapper>
           )}

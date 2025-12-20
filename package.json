@@ -2,6 +2,7 @@
   "name": "postcardru",
   "version": "0.1.0",
   "private": true,
+  "packageManager": "pnpm@8.15.0",
   "scripts": {
     "dev": "next dev",
     "build": "next build",
@@ -25,7 +26,6 @@
     "react-ga4": "^2.1.0",
     "typescript": "5.0.4",
     "validator": "^13.9.0",
-    "vercel": "^29.3.6",
     "yup": "^1.3.3"
   },
   "devDependencies": {

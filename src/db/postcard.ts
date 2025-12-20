@@ -12,6 +12,8 @@ interface Card extends Document {
   title: string;
   sender: Person;
   recipient: Person;
+  createdAt?: Date;
+  updatedAt?: Date;
 }
 
 const Postcard: Model<Document & Card> =
@@ -33,7 +35,7 @@ const Postcard: Model<Document & Card> =
         name: { type: String, required: true },
         email: { type: String, required: true },
       },
-    })
+    }, { timestamps: true })
   );
 
 export default Postcard;
