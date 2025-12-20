@@ -1,6 +1,5 @@
 import "../../styles/globals.css";
-
-import { GoogleAnalytics } from "@next/third-parties/google";
+import Script from "next/script";
 
 export const metadata = {
   title: "PostcardRu.com",
@@ -26,10 +25,25 @@ export default function RootLayout({
       />
       <meta property="og:url" content="https://postcardru.com/" />
       <meta property="og:type" content="website" />
-      <body>{children}</body>
-      {process.env.NEXT_PUBLIC_GA && (
-        <GoogleAnalytics gaId={process.env.NEXT_PUBLIC_GA} />
-      )}
+      <body>
+        {children}
+        {process.env.NEXT_PUBLIC_GA && (
+          <>
+            <Script
+              src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_GA}`}
+              strategy="afterInteractive"
+            />
+            <Script id="google-analytics" strategy="afterInteractive">
+              {`
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){dataLayer.push(arguments);}
+                gtag('js', new Date());
+                gtag('config', '${process.env.NEXT_PUBLIC_GA}');
+              `}
+            </Script>
+          </>
+        )}
+      </body>
     </html>
   );
 }
