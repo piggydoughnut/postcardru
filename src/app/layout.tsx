@@ -27,7 +27,9 @@ export default function RootLayout({
       <meta property="og:url" content="https://postcardru.com/" />
       <meta property="og:type" content="website" />
       <body>{children}</body>
-      <GoogleAnalytics gaId={process.env.NEXT_PUBLIC_GA ?? ""} />
+      {process.env.NEXT_PUBLIC_GA && (
+        <GoogleAnalytics gaId={process.env.NEXT_PUBLIC_GA} />
+      )}
     </html>
   );
 }

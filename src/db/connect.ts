@@ -46,7 +46,7 @@ async function dbConnect() {
   const maskedUri = MONGODB_URI.replace(/:[^:@]+@/, ":****@");
 
   // Validate that URI doesn't contain localhost
-  if (MONGODB_URI.includes('127.0.0.1') || MONGODB_URI.includes('localhost')) {
+  if (MONGODB_URI.includes("127.0.0.1") || MONGODB_URI.includes("localhost")) {
     throw new Error(`MONGODB_URI contains localhost! URI: ${maskedUri}`);
   }
   console.log("Attempting to connect to MongoDB...");
