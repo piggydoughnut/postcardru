@@ -1,3 +1,4 @@
+import "@/lib/error-handlers";
 import { NextResponse } from "next/server";
 import Postcard from "@/db/postcard";
 import dbConnect from "@/db/connect";
