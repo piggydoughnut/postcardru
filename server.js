@@ -1,6 +1,25 @@
 // Load error handlers before anything else
 require("./src/lib/error-handlers.js");
 
+// Ensure cache directories exist with proper permissions
+const fs = require("fs");
+const path = require("path");
+const cacheDirs = [
+  path.join(process.cwd(), ".next", "cache", "images"),
+  path.join("/workspace", ".next", "cache", "images"),
+];
+
+cacheDirs.forEach((dir) => {
+  try {
+    if (!fs.existsSync(dir)) {
+      fs.mkdirSync(dir, { recursive: true, mode: 0o755 });
+    }
+  } catch (err) {
+    // Ignore errors - directory might already exist or permissions might be set differently
+    console.warn(`Could not create cache directory ${dir}:`, err.message);
+  }
+});
+
 // Suppress ECONNREFUSED errors to localhost (known Next.js issue)
 const originalEmit = process.emit;
 process.emit = function (event, error) {
