@@ -38,6 +38,8 @@ async function dbConnect() {
     // Explicitly disable localhost fallback
     serverSelectionTimeoutMS: 5000,
     socketTimeoutMS: 45000,
+    // Specify database name
+    dbName: "postcardru",
   };
 
   if (!MONGODB_URI) {
