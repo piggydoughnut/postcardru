@@ -1,9 +1,53 @@
 import "../../styles/globals.css";
 import Script from "next/script";
+import type { Metadata } from "next";
 
-export const metadata = {
-  title: "PostcardRu.com",
-  description: "Virtual Postcards from the 90s",
+export const metadata: Metadata = {
+  title: {
+    default: "PostcardRu – Send a Free Online Postcard with Music",
+    template: "%s | PostcardRu",
+  },
+  description:
+    "Send a free virtual postcard with music, animated backgrounds and a personal message. A nostalgic 2000s online postcard experience rebuilt from the original postcard.ru.",
+  keywords: [
+    "free online postcard",
+    "virtual postcard",
+    "send postcard online",
+    "postcard with music",
+    "2000s postcard",
+    "nostalgic postcard",
+    "greeting card",
+    "postcard.ru",
+  ],
+  metadataBase: new URL("https://postcardru.com"),
+  openGraph: {
+    title: "PostcardRu – Send a Free Online Postcard with Music",
+    description:
+      "Send a free virtual postcard with music, animated backgrounds and a personal message. A nostalgic 2000s online postcard experience.",
+    url: "https://postcardru.com",
+    siteName: "PostcardRu",
+    images: [
+      {
+        url: "https://postcardru.com/_next/image?url=%2Fpostcardimages%2Flove_love%2F22.jpg&w=828&q=75",
+        width: 828,
+        alt: "PostcardRu – Virtual Postcards with Music",
+      },
+    ],
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "PostcardRu – Send a Free Online Postcard with Music",
+    description:
+      "Send a free virtual postcard with music, animated backgrounds and a personal message. A nostalgic 2000s online postcard experience.",
+    images: [
+      "https://postcardru.com/_next/image?url=%2Fpostcardimages%2Flove_love%2F22.jpg&w=828&q=75",
+    ],
+  },
+  robots: {
+    index: true,
+    follow: true,
+  },
 };
 
 export default function RootLayout({
@@ -14,17 +58,6 @@ export default function RootLayout({
   return (
     <html lang="en">
       <link rel="icon" href="/favicon.ico" sizes="any" />
-      <meta property="og:title" content="PostcardRu.com: Virtual Postcards" />
-      <meta
-        property="og:description"
-        content="Virtual Postcards from the 90s"
-      />
-      <meta
-        property="og:image"
-        content="https://postcardru.com/_next/image?url=%2Fpostcardimages%2Flove_love%2F22.jpg&w=828&q=75"
-      />
-      <meta property="og:url" content="https://postcardru.com/" />
-      <meta property="og:type" content="website" />
       <body>
         {children}
         {process.env.NEXT_PUBLIC_GA && (
