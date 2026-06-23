@@ -5,7 +5,7 @@ FROM node:20-alpine AS base
 RUN npm install -g pnpm@8.15.0
 
 # Set working directory
-WORKDIR /app
+WORKDIR /workspace
 
 # Copy package files
 COPY package.json pnpm-lock.yaml ./
@@ -22,7 +22,7 @@ RUN pnpm run build
 # Production stage
 FROM node:20-alpine AS runner
 
-WORKDIR /app
+WORKDIR /workspace
 
 ENV NODE_ENV=production
 ENV NEXT_TELEMETRY_DISABLED=1
@@ -35,17 +35,17 @@ RUN addgroup --system --gid 1001 nodejs
 RUN adduser --system --uid 1001 nextjs
 
 # Copy package files and install production dependencies
-COPY --from=base /app/package.json ./
-COPY --from=base /app/pnpm-lock.yaml ./
+COPY --from=base /workspace/package.json ./
+COPY --from=base /workspace/pnpm-lock.yaml ./
 RUN pnpm install --frozen-lockfile --prod
 
 # Copy built application
-COPY --from=base /app/public ./public
-COPY --from=base /app/.next ./.next
+COPY --from=base /workspace/public ./public
+COPY --from=base /workspace/.next ./.next
 
 # Create cache directory with proper permissions before switching users
-RUN mkdir -p /app/.next/cache/images && \
-    chown -R nextjs:nodejs /app
+RUN mkdir -p /workspace/.next/cache/images && \
+    chown -R nextjs:nodejs /workspace
 
 USER nextjs
 
