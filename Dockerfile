@@ -1,5 +1,5 @@
-# Use Node.js 18 LTS
-FROM node:18-alpine AS base
+# Use Node.js 20 LTS
+FROM node:20-alpine AS base
 
 # Install pnpm
 RUN npm install -g pnpm@8.15.0
@@ -20,7 +20,7 @@ COPY . .
 RUN pnpm run build
 
 # Production stage
-FROM node:18-alpine AS runner
+FROM node:20-alpine AS runner
 
 WORKDIR /app
 
@@ -43,8 +43,9 @@ RUN pnpm install --frozen-lockfile --prod
 COPY --from=base /app/public ./public
 COPY --from=base /app/.next ./.next
 
-# Set correct permissions
-RUN chown -R nextjs:nodejs /app
+# Create cache directory with proper permissions before switching users
+RUN mkdir -p /app/.next/cache/images && \
+    chown -R nextjs:nodejs /app
 
 USER nextjs
 

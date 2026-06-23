@@ -28,9 +28,28 @@ export const sendEmail = async (email: string, postcardUrl: string) => {
 You've got a postcard. To view this postcard, click on the
 following link at anytime within the next 365 days
 ${postcardUrl}.<br/><br/>
- 
-Greeting postcards at<br/>
-http://www.postcardru.com/`,
+
+Greeting cards at<br/>
+https://postcardru.com/`,
+  };
+
+  return client.messages.create(DOMAIN, data);
+};
+
+export const sendConfirmationEmail = async (email: string, postcardUrl: string) => {
+  const client = await getMailgunClient();
+
+  const DOMAIN = "postcardru.com";
+  const data = {
+    from: "PostcardRu <hello@postcardru.com>",
+    to: email,
+    subject: "Your postcard was successfully sent!",
+    html: `Hello! <br/><br/>
+Your postcard has been successfully sent. You can view it at the following link:<br/><br/>
+${postcardUrl}<br/><br/>
+
+Greeting cards at<br/>
+https://postcardru.com/`,
   };
 
   return client.messages.create(DOMAIN, data);

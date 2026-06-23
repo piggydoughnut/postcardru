@@ -47,7 +47,7 @@ export default function Page({ params }: { params: { postcardId: string } }) {
         }}
       >
         {cardParams ? (
-          <div className="flex flex-col items-center gap-8">
+          <div className="flex flex-col items-center gap-8 w-full max-w-[600px]">
             <PostcardPreview
               cardParams={cardParams}
               mode={PostcardStates.complete}

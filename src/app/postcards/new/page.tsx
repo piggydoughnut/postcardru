@@ -122,12 +122,12 @@ export default function Page({
             />
           )}
           {postCardState === PostcardStates.sending && (
-            <Wrapper className="flex pt-20 text-center">
+            <Wrapper className="flex pt-20 text-center w-full">
               <H2>We are sending your card please be patient...</H2>
             </Wrapper>
           )}
           {postcardId && postCardState === PostcardStates.sent && (
-            <Wrapper className="flex pt-20 text-center">
+            <Wrapper className="flex pt-20 text-center w-full">
               <div className="text-mainBlue">
                 <H1>Postcard sent</H1>
                 <p>You can preview your sent postcard here:</p> <br />

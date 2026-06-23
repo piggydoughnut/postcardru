@@ -1,24 +1,38 @@
 // Load error handlers before anything else
 require("./src/lib/error-handlers.js");
 
-// Ensure cache directories exist with proper permissions
+// Ensure cache directory exists with proper permissions
+// If working directory is /workspace (volume mount), use /tmp for cache
 const fs = require("fs");
 const path = require("path");
-const cacheDirs = [
-  path.join(process.cwd(), ".next", "cache", "images"),
-  path.join("/workspace", ".next", "cache", "images"),
-];
 
-cacheDirs.forEach((dir) => {
-  try {
-    if (!fs.existsSync(dir)) {
-      fs.mkdirSync(dir, { recursive: true, mode: 0o755 });
-    }
-  } catch (err) {
-    // Ignore errors - directory might already exist or permissions might be set differently
-    console.warn(`Could not create cache directory ${dir}:`, err.message);
+// Try to create cache in current directory first, fallback to /tmp
+const cacheBaseDir =
+  process.cwd() === "/workspace"
+    ? path.join("/tmp", ".next-cache")
+    : path.join(process.cwd(), ".next");
+
+const cacheDir = path.join(cacheBaseDir, "cache", "images");
+
+try {
+  if (!fs.existsSync(cacheDir)) {
+    fs.mkdirSync(cacheDir, { recursive: true, mode: 0o755 });
   }
-});
+  // Set environment variable to tell Next.js where to cache
+  if (cacheBaseDir !== path.join(process.cwd(), ".next")) {
+    process.env.NEXT_CACHE_DIR = cacheBaseDir;
+  }
+} catch (err) {
+  console.warn(`Could not create cache directory ${cacheDir}:`, err.message);
+  // Fallback to /tmp
+  const tmpCacheDir = path.join("/tmp", ".next-cache", "cache", "images");
+  try {
+    fs.mkdirSync(tmpCacheDir, { recursive: true, mode: 0o755 });
+    process.env.NEXT_CACHE_DIR = path.join("/tmp", ".next-cache");
+  } catch (tmpErr) {
+    console.error("Failed to create cache directory in /tmp:", tmpErr.message);
+  }
+}
 
 // Suppress ECONNREFUSED errors to localhost (known Next.js issue)
 const originalEmit = process.emit;
@@ -29,6 +43,7 @@ process.emit = function (event, error) {
     (error?.address === "127.0.0.1" || error?.address === "localhost")
   ) {
     // Silently ignore - this is a known Next.js issue in production
+    console.log("ECONNREFUSED error silently ignored");
     return false;
   }
   return originalEmit.apply(this, arguments);

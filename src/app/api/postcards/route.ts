@@ -4,7 +4,7 @@ import Postcard from "@/db/postcard";
 import dbConnect from "@/db/connect";
 import { generateRandomNumber } from "@/helpers/general";
 import validator from "validator";
-import { sendEmail } from "@/helpers/email";
+import { sendEmail, sendConfirmationEmail } from "@/helpers/email";
 
 export async function POST(request: Request) {
   try {
@@ -52,7 +52,10 @@ export async function POST(request: Request) {
     const postcardUrl = `${baseUrl}/postcards/${postcard.postcardId}`;
 
     try {
-      await sendEmail(sanitizedBody.recipient.email, postcardUrl);
+      await Promise.all([
+        sendEmail(sanitizedBody.recipient.email, postcardUrl),
+        sendConfirmationEmail(sanitizedBody.sender.email, postcardUrl),
+      ]);
     } catch (emailError) {
       console.error("Failed to send email:", emailError);
       // Don't fail the request if email fails, but log it
