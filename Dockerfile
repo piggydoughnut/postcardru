@@ -42,6 +42,7 @@ RUN pnpm install --frozen-lockfile --prod
 # Copy built application
 COPY --from=base /workspace/public ./public
 COPY --from=base /workspace/.next ./.next
+COPY --from=base /workspace/server.js ./server.js
 
 # Create cache directory with proper permissions before switching users
 RUN mkdir -p /workspace/.next/cache/images && \
