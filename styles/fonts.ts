@@ -1,6 +1,6 @@
-import { Averia_Libre, Great_Vibes, Niconne } from "next/font/google";
+import localFont from "next/font/local";
 
-const vibes = Great_Vibes({ weight: "400", subsets: ["latin"] });
-const niconne = Niconne({ weight: "400", subsets: ["latin"] });
-const alveria = Averia_Libre({ weight: "400", subsets: ["latin"] });
+const vibes = localFont({ src: "../public/fonts/great-vibes-400.woff2" });
+const niconne = localFont({ src: "../public/fonts/niconne-400.woff2" });
+const alveria = localFont({ src: "../public/fonts/averia-libre-400.woff2" });
 export { vibes, niconne, alveria };
