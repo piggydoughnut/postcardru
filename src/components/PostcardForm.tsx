@@ -4,7 +4,7 @@ const HSeparator = () => (
 );
 
 import { CardParameters, Person } from "@/helpers/types";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 import AddressFields from "./AddressFields";
 import Image from "next/image";
@@ -12,6 +12,7 @@ import { Select } from "./Select";
 import { Wrapper } from "./Wrapper";
 import backgrounds from "@/helpers/backgrounds.json";
 import musicList from "@/helpers/music.json";
+import { getMusicPath } from "@/helpers/general";
 import { postcardFormValidationSchema } from "@/helpers/validation";
 import titles from "@/helpers/titles";
 
@@ -28,6 +29,8 @@ export default function PostcardForm({
 }) {
   const [chosenSongName, setChosenSongName] = useState("no music");
   const [chosenBackground, setChosenBackground] = useState("");
+  const [isPlaying, setIsPlaying] = useState(false);
+  const audioRef = useRef<HTMLAudioElement>(null);
   useEffect(() => {
     if (params.music) {
       setChosenSongName(
@@ -70,6 +73,11 @@ export default function PostcardForm({
       const fileName = musicList.find((item) => item.rusName == chosenSongName);
       updateCardParams("music", fileName?.fileName);
     }
+    if (audioRef.current) {
+      audioRef.current.pause();
+      audioRef.current.currentTime = 0;
+      setIsPlaying(false);
+    }
   }, [chosenSongName]);
 
   useEffect(() => {
@@ -81,6 +89,25 @@ export default function PostcardForm({
       );
     }
   }, [chosenBackground]);
+
+  const selectedMusicFile = musicList.find(
+    (item) => item.rusName === chosenSongName
+  )?.fileName;
+  const selectedBackgroundFile = backgrounds.find(
+    (item) => item.eng === chosenBackground
+  )?.fileName;
+
+  const togglePlay = () => {
+    if (!audioRef.current || !selectedMusicFile) return;
+    if (isPlaying) {
+      audioRef.current.pause();
+      setIsPlaying(false);
+    } else {
+      audioRef.current.src = getMusicPath(selectedMusicFile);
+      audioRef.current.play();
+      setIsPlaying(true);
+    }
+  };
 
   return (
     <div>
@@ -140,33 +167,59 @@ export default function PostcardForm({
         <p className="text-mainBlue">
           You can customize the following settings to your liking:
         </p>
-        <Select
-          name="background"
-          className="my-2 text-[18px] sm:text-[16px]"
-          value={chosenBackground}
-          onChange={(e) => setChosenBackground(e.target.value)}
-        >
-          {backgrounds.map((item, idx) => (
-            <option
-              key={`${idx}-${item.fileName}`}
-              className="text-sm text-mainBlue"
+        <div className="my-2">
+          <Select
+            name="background"
+            className="text-[18px] sm:text-[16px]"
+            value={chosenBackground}
+            onChange={(e) => setChosenBackground(e.target.value)}
+          >
+            {backgrounds.map((item, idx) => (
+              <option
+                key={`${idx}-${item.fileName}`}
+                className="text-sm text-mainBlue"
+              >
+                {item.eng}
+              </option>
+            ))}
+          </Select>
+          {selectedBackgroundFile && (
+            <div className="mt-2">
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src={`/backgrounds/${selectedBackgroundFile}`}
+                alt={chosenBackground}
+                className="h-16 w-40 object-cover border border-heavyBlue opacity-80"
+              />
+            </div>
+          )}
+        </div>
+        <div className="my-4">
+          <div className="flex flex-wrap items-center gap-2">
+            <Select
+              name="music"
+              className="text-[18px] sm:text-[16px] w-full sm:w-auto"
+              value={chosenSongName}
+              onChange={(e) => setChosenSongName(e.target.value)}
             >
-              {item.eng}
-            </option>
-          ))}
-        </Select>
-        <Select
-          name="music"
-          className="my-10 text-[18px] sm:text-[16px] w-full sm:w-auto"
-          value={chosenSongName}
-          onChange={(e) => setChosenSongName(e.target.value)}
-        >
-          {musicList.map((item) => (
-            <option key={item.fileName} className="text-sm text-mainBlue">
-              {item.rusName}
-            </option>
-          ))}
-        </Select>
+              {musicList.map((item) => (
+                <option key={item.fileName} className="text-sm text-mainBlue">
+                  {item.rusName}
+                </option>
+              ))}
+            </Select>
+            {selectedMusicFile && (
+              <button
+                type="button"
+                onClick={togglePlay}
+                className="border border-mainBlue px-2 py-0.5 text-sm text-mainBlue hover:bg-blue-50"
+              >
+                {isPlaying ? "⏸ Stop" : "▶ Preview"}
+              </button>
+            )}
+          </div>
+          <audio ref={audioRef} onEnded={() => setIsPlaying(false)} />
+        </div>
       </div>
       <div className="h-14 sm:h-10  flex gap-x-3 flex-wrap">
         {!!errors.length && (
